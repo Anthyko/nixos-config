@@ -15,6 +15,7 @@ let
     g = "lazygit";
     nfmt = "nix run .#formatter.x86_64-linux -- .";
     f = "fcd";
+    blk = "lsblk -o NAME,SIZE,MODEL,MOUNTPOINT";
   };
 
 in
