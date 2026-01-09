@@ -1,24 +1,15 @@
-{ config
-, pkgs
-, ...
-}: {
+{ config, pkgs, ... }:
+
+{
   programs.mpv = {
     enable = true;
-    package = (
-      pkgs.mpv-unwrapped.wrapper {
-        scripts = with pkgs.mpvScripts; [
-          uosc
-          sponsorblock
-        ];
 
-        mpv = pkgs.mpv-unwrapped.override {
-          waylandSupport = true;
-        };
-      }
-    );
+    package = pkgs.mpv.override {
+      scripts = with pkgs.mpvScripts; [ uosc sponsorblock ];
+    };
     config = {
       vo = "gpu";
-      gpu-api = "opengl";
+      "gpu-api" = "opengl";
     };
   };
 }
