@@ -30,7 +30,6 @@ jobs:
           ./flake-bump.sh
 
       - name: Auto commit updated flake.lock
-        if: steps.bump.outputs.changed == 'true' && steps.build.outcome == 'success'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Bump flake.lock
