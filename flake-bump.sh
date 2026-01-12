@@ -7,10 +7,8 @@ nix  --accept-flake-config flake update
 
 echo "🔍 Checking for flake.lock changes..."
 if git diff --exit-code flake.lock > /dev/null; then
-  echo "✅ No changes detected"
-  echo "changed=false" >> "$GITHUB_OUTPUT"
+  echo "✅ No changes detected" 
 else
   echo "🚀 flake.lock was updated"
-  echo "changed=true" >> "$GITHUB_OUTPUT"
 fi
 
