@@ -38,7 +38,7 @@
 
     flake = "/home/anthony/git/nixos-config";
 
-    operation = "boot";
+    operation = "switch";
 
     dates = "19:00";
     flags = [
