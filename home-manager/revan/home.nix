@@ -30,6 +30,7 @@
     tldr
     lazygit
     nh
+    zellij
   ];
   imports = [ ];
 
