@@ -22,8 +22,8 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-   environment.systemPackages = with pkgs; [ 
-    git 
+  environment.systemPackages = with pkgs; [
+    git
   ];
   ############################
   # Firewall
@@ -40,29 +40,32 @@
 
     operation = "boot";
 
-    dates = "18:20";
-
+    dates = "19:00";
+    flags = [
+      "--accept-flake-config"
+    ];
     allowReboot = true;
   };
-systemd.services.update-nixos-config = {
-  description = "Update NixOS config repo (pull deployment)";
-  serviceConfig = {
-    Type = "oneshot";
-    User = "root";
+  systemd.services.update-nixos-config = {
+    path = [ pkgs.git ];
+    description = "Update NixOS config repo (pull deployment)";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+    script = ''
+      set -euo pipefail
+      cd /home/anthony/git/nixos-config
+      git fetch --prune origin
+      git checkout -f origin/master
+    '';
   };
-  script = ''
-    set -euo pipefail
-    cd /home/anthony/git/nixos-config
-    git fetch --prune origin
-    git checkout -f origin/master
-  '';
-};
 
-# pull git repo before building
-systemd.services.nixos-upgrade = {
-  after = [ "update-nixos-config.service" ];
-  wants = [ "update-nixos-config.service" ];
-};
+  # pull git repo before building
+  systemd.services.nixos-upgrade = {
+    after = [ "update-nixos-config.service" ];
+    wants = [ "update-nixos-config.service" ];
+  };
 
   system.stateVersion = "24.05";
 }

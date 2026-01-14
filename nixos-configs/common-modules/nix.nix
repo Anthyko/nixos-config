@@ -17,4 +17,5 @@
     dates = "weekly";
     options = "--delete-older-than 15d";
   };
+  nix.optimise.dates = [ "12:00" ];
 }
