@@ -22,6 +22,9 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+   environment.systemPackages = with pkgs; [ 
+    git 
+  ];
   ############################
   # Firewall
   ############################
@@ -30,6 +33,36 @@
   networking.hostName = "mark";
 
   networking.firewall.enable = true;
+  system.autoUpgrade = {
+    enable = true;
+
+    flake = "/home/anthony/git/nixos-config";
+
+    operation = "boot";
+
+    dates = "18:20";
+
+    allowReboot = true;
+  };
+systemd.services.update-nixos-config = {
+  description = "Update NixOS config repo (pull deployment)";
+  serviceConfig = {
+    Type = "oneshot";
+    User = "root";
+  };
+  script = ''
+    set -euo pipefail
+    cd /home/anthony/git/nixos-config
+    git fetch --prune origin
+    git checkout -f origin/master
+  '';
+};
+
+# pull git repo before building
+systemd.services.nixos-upgrade = {
+  after = [ "update-nixos-config.service" ];
+  wants = [ "update-nixos-config.service" ];
+};
 
   system.stateVersion = "24.05";
 }
