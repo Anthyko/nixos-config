@@ -18,5 +18,9 @@
       { url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC1KxoDAzbWOWOhw5GbsE-Bw"; }
       { url = "https://www.youtube.com/feeds/videos.xml?channel_id=UCO5QSoES5yn2Dw7YixDYT5Q"; }
     ];
+    extraConfig = ''
+      browser "xdg-open %u"
+      macro m set browser "mpv %u"; open-in-browser ; set browser "xdg-open %u"
+    '';
   };
 }
