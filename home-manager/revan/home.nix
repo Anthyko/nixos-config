@@ -25,7 +25,7 @@
     python312Packages.nox
     python312Packages.virtualenv
     python312Packages.mypy
-    (poetry.override {python3 = python312;})
+    (poetry.override { python3 = python312; })
     gitflow
     tldr
     lazygit
