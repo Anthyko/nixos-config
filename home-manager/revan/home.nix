@@ -25,12 +25,13 @@
     python312Packages.nox
     python312Packages.virtualenv
     python312Packages.mypy
-    poetry
+    (poetry.override {python3 = python312;})
     gitflow
     tldr
     lazygit
     nh
     zellij
+    stdenv.cc.cc.lib
   ];
   imports = [ ];
 
