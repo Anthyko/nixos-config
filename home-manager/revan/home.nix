@@ -31,6 +31,7 @@
     lazygit
     nh
     zellij
+    k9s
     stdenv.cc.cc.lib
   ];
   imports = [ ];
