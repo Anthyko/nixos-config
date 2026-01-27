@@ -70,6 +70,7 @@ jobs:
       - uses: wimpysworld/nothing-but-nix@main
         with:
           witness-carnage: true
+          hatchet-protocol: 'rampage' 
       - uses: cachix/install-nix-action@v27
         with:
           extra_nix_config: |
