@@ -17,7 +17,6 @@ in
     exfat
     rclone
     vial
-    vdhcoapp
     neofetch
     lf
     fd
