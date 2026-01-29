@@ -31,7 +31,10 @@ in
           | fzf --preview 'exa -T --color=always {} | head -40') || return
         cd "$dir"
       }
-
+       # Load per-host/user overrides if present
+       if [[ -r "$HOME/.zshrc_local" ]]; then
+          source "$HOME/.zshrc_local"
+        fi
     '';
 
     shellAliases = commonAliases;
