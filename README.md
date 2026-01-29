@@ -34,6 +34,8 @@ substituters = https://datantho-nixos.cachix.org https://cache.nixos.org https:/
 trusted-public-keys = datantho-nixos.cachix.org-1:e1Wvy2MQcqrTm5Vedsat55IrNNZRqYvJppfbjMECXOE= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
 ```
 
+Build with : nh home switch ~/nixos-config -c revan
+
 
 ## For nixos systems
 
