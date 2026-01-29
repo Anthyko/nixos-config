@@ -42,7 +42,6 @@ jobs:
 # discover the nixos config names to have a dynamic way of building every config
   discover:
     runs-on: ubuntu-latest
-    needs: build-home-manager # we build a home-manager config first to have all the shared depencies built beforehand
     outputs:
       matrix: ${{ steps.mk.outputs.matrix }}
     steps:
@@ -60,7 +59,7 @@ jobs:
           echo "matrix={\"host\":$hosts_json}" >> "$GITHUB_OUTPUT"
 
   build:
-    needs: discover
+    needs: [build-home-manager,discover]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
