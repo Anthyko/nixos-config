@@ -43,23 +43,23 @@ let
         (commonBaseModules
           ++ (if desktop then commonDesktopModules else [ ])
           ++ [
-            ./../nixos-configs/${name}/configuration.nix
+          ./../nixos-configs/${name}/configuration.nix
 
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "";
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "";
 
-              home-manager.sharedModules =
-                hmCommonBaseModules
+            home-manager.sharedModules =
+              hmCommonBaseModules
                 ++ (if desktop then hmCommonDesktopModules else [ ]);
 
-              home-manager.users.${user} =
-                import ./../home-manager/${home-manager-directory}/home.nix;
+            home-manager.users.${user} =
+              import ./../home-manager/${home-manager-directory}/home.nix;
 
-              nix.settings.trusted-users = [ "root" user ];
-            }
-          ]
+            nix.settings.trusted-users = [ "root" user ];
+          }
+        ]
           ++ extraModules);
     };
 
