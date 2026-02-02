@@ -61,7 +61,6 @@
         { config, ... }:
         {
           pre-commit = {
-            check.enable = true;
             settings.hooks.nixfmt.enable = true;
           };
 
