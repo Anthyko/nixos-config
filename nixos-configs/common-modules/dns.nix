@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 {
 
@@ -15,7 +16,10 @@
     settings = {
       dns = {
         # REQUIRED: List of bootstrap DNS servers for DoH/DoT name resolution
-        bootstrap_dns = [ "1.1.1.1" "8.8.8.8" ];
+        bootstrap_dns = [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
         upstream_dns = [
           "https://dns.cloudflare.com/dns-query"
           "https://dns.quad9.net/dns-query"

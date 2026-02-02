@@ -1,7 +1,7 @@
 #used to share aliases, return all the common aliases merged with the "extra"
-{ username
-, extra ? { }
-,
+{
+  username,
+  extra ? { },
 }:
 
 let

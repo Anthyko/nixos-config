@@ -1,7 +1,9 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   services.radicale = {
     enable = true;
 
@@ -19,6 +21,5 @@
 
     };
   };
-
 
 }

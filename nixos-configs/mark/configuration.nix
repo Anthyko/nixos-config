@@ -1,7 +1,8 @@
-{ modulesPath
-, lib
-, pkgs
-, ...
+{
+  modulesPath,
+  lib,
+  pkgs,
+  ...
 }@args:
 {
   imports = [
@@ -28,7 +29,10 @@
   ############################
   # Firewall
   ############################
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
   networking.hostName = "mark";
 

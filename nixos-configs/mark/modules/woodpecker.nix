@@ -1,7 +1,9 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   services.woodpecker-server = {
     enable = false;
     environment = {
@@ -30,7 +32,7 @@
 # WOODPECKER_AGENT_SECRET=same_secret_has_server
 # WOODPECKER_AGENT_LABELS="runner=local"
 #
-# ==== 
+# ====
 # server.env
 # WOODPECKER_AGENT_SECRET=same_secret_has_agent
 # WOODPECKER_GITHUB_CLIENT=tochange

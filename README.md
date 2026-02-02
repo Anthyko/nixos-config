@@ -1,5 +1,5 @@
 [![sync](https://github.com/dat-Antho/nixos-config/actions/workflows/sync.yml/badge.svg?branch=master)](https://github.com/dat-Antho/nixos-config/actions/workflows/sync.yml)
-[![Flake-bump](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-bump.yml/badge.svg?branch=master)](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-bump.yml)   [![Flake-check](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-check.yml/badge.svg?branch=master)](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-check.yml) 
+[![Flake-bump](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-bump.yml/badge.svg?branch=master)](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-bump.yml)   [![Flake-check](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-check.yml/badge.svg?branch=master)](https://github.com/dat-Antho/nixos-config/actions/workflows/flake-check.yml)
 [![Build-configs](https://github.com/Anthyko/nixos-config/actions/workflows/build.yml/badge.svg)](https://github.com/Anthyko/nixos-config/actions/workflows/build.yml)
 
 
@@ -8,10 +8,10 @@
 
 ## Nixos config
 
-### Nixos 
+### Nixos
 Zeno : main pc
 
-Aurele : laptop 
+Aurele : laptop
 
 Mark : vps
 ### Home-manager
@@ -45,4 +45,3 @@ Build with : nh home switch --accept-flake-config ~/nixos-config -c revan or hom
 - move /etc/nix/nixos/* into the nixos-configs directory
 - update the flake to configure the nixos system
 - nixos-rebuild switch --flake .#aurele (example to build aurele)
-

@@ -1,7 +1,7 @@
 name: Build-configs
 # i'll put this here for now
 on:
-#   schedule: 
+#   schedule:
 #     - cron: '0 12 * * 3'
   workflow_dispatch:
   workflow_run:
@@ -70,7 +70,7 @@ jobs:
       - uses: wimpysworld/nothing-but-nix@main
         with:
           witness-carnage: true
-          hatchet-protocol: 'rampage' 
+          hatchet-protocol: 'rampage'
       - uses: cachix/install-nix-action@v27
         with:
           extra_nix_config: |
@@ -83,4 +83,3 @@ jobs:
         run: |
           nix build --accept-flake-config --print-build-logs --no-link \
             .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
-

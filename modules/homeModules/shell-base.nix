@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  # example usage 
+  # example usage
   # imports = [
   #    (inputs.self.factory.zsh {
   #      username = "anthony";
@@ -10,8 +10,16 @@
   #    })
   #  ];
   config.flake.factory.shell-base =
-    { username ? "anthony", extraAliases ? { } }:
-    { config, lib, pkgs, ... }:
+    {
+      username ? "anthony",
+      extraAliases ? { },
+    }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       commonAliases = inputs.self.factory.shell-aliases {
         inherit username;
@@ -58,7 +66,11 @@
             }
             {
               name = "sindresorhus/pure";
-              tags = [ "as:theme" "use:pure.zsh" "from:github" ];
+              tags = [
+                "as:theme"
+                "use:pure.zsh"
+                "from:github"
+              ];
             }
           ];
         };

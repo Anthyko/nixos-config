@@ -1,7 +1,9 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   users.users.anthony = {
     isNormalUser = true;
     home = "/home/anthony";

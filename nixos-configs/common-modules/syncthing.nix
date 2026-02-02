@@ -1,7 +1,9 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  ...
+}:
+{
   # SYNCTHING
   services.syncthing = {
     enable = true;
@@ -10,7 +12,7 @@
     dataDir = "/home/anthony/.config/syncthing-data";
   };
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder from syncthing
-  # migration script 
+  # migration script
   system.activationScripts.syncthing-migrate = ''
     old="/var/lib/syncthing"
     new="/home/anthony/.config/syncthing-data"

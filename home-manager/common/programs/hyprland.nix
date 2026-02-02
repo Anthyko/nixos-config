@@ -1,8 +1,10 @@
-{ config
-, pkgs
-, lib
-, ...
-}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   wayland.windowManager.hyprland = {
     enable = true;
     # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
@@ -124,7 +126,13 @@
 
         battery = {
           format = "{icon}  {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         pulseaudio = {
@@ -167,155 +175,154 @@
         };
       }
     ];
-    style =
-      ''
-        @define-color bg-main        #282828;
-        @define-color bg-alt         #3c3836;
-        @define-color bg-inactive    #504945;
-        @define-color bg-focus       #665c54;
+    style = ''
+      @define-color bg-main        #282828;
+      @define-color bg-alt         #3c3836;
+      @define-color bg-inactive    #504945;
+      @define-color bg-focus       #665c54;
 
-        @define-color fg-normal      #ebdbb2;
-        @define-color fg-muted       #a89984;
-        @define-color fg-warning     #fabd2f;
-        @define-color fg-critical    #fb4934;
-        @define-color fg-accent      #d79921;
-        @define-color fg-success     #98971a;
-        @define-color fg-link        #83a598;
+      @define-color fg-normal      #ebdbb2;
+      @define-color fg-muted       #a89984;
+      @define-color fg-warning     #fabd2f;
+      @define-color fg-critical    #fb4934;
+      @define-color fg-accent      #d79921;
+      @define-color fg-success     #98971a;
+      @define-color fg-link        #83a598;
 
-        @define-color red            #cc241d;
-        @define-color green          #98971a;
-        @define-color yellow         #d79921;
-        @define-color orange         #fe8019;
-        @define-color blue           #458588;
-        @define-color purple         #b16286;
-        @define-color aqua           #8ec07c;
+      @define-color red            #cc241d;
+      @define-color green          #98971a;
+      @define-color yellow         #d79921;
+      @define-color orange         #fe8019;
+      @define-color blue           #458588;
+      @define-color purple         #b16286;
+      @define-color aqua           #8ec07c;
 
-        * {
-          font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font";
-          font-size: 14px;
-          font-weight: bold;
-          border: none;
-          margin: 0;
-          padding: 0;
-        }
+      * {
+        font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font";
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        margin: 0;
+        padding: 0;
+      }
 
-        window#waybar {
-          background-color: transparent;
-        }
+      window#waybar {
+        background-color: transparent;
+      }
 
-        window#waybar.hidden {
-          opacity: 0.2;
-        }
+      window#waybar.hidden {
+        opacity: 0.2;
+      }
 
-        /* Modules containers */
-        .modules-left,
-        .modules-center,
-        .modules-right {
-          margin: 2px 4px;
-          background-color: transparent;
-        }
+      /* Modules containers */
+      .modules-left,
+      .modules-center,
+      .modules-right {
+        margin: 2px 4px;
+        background-color: transparent;
+      }
 
-        /* Workspaces */
-        #workspaces button {
-          padding: 2px 4px;
-          margin: 2px;
-          color: @fg-muted;
-          background: transparent;
-          border-radius: 6px;
-        }
+      /* Workspaces */
+      #workspaces button {
+        padding: 2px 4px;
+        margin: 2px;
+        color: @fg-muted;
+        background: transparent;
+        border-radius: 6px;
+      }
 
-        #workspaces button.focused {
-          background: @bg-focus;
-          color: @fg-accent;
-        }
+      #workspaces button.focused {
+        background: @bg-focus;
+        color: @fg-accent;
+      }
 
-        #workspaces button.urgent {
-          background: @fg-critical;
-          color: @bg-main;
-        }
+      #workspaces button.urgent {
+        background: @fg-critical;
+        color: @bg-main;
+      }
 
-        #workspaces button.active {
-          background: @bg-focus;
-          color: @fg-normal;
-        }
+      #workspaces button.active {
+        background: @bg-focus;
+        color: @fg-normal;
+      }
 
-        /* Generic module style */
-        #clock,
-        #cpu,
-        #memory,
-        #temperature,
-        #disk,
-        #battery,
-        #network,
-        #pulseaudio,
-        #custom-microphone,
-        #custom-public-ip,
-        #custom-gpu-temp,
-        #tray {
-          padding: 2px 4px;
-          margin: 0 2px;
-          border-radius: 8px;
-          background-color: @bg-inactive;
-          color: @fg-normal;
-        }
+      /* Generic module style */
+      #clock,
+      #cpu,
+      #memory,
+      #temperature,
+      #disk,
+      #battery,
+      #network,
+      #pulseaudio,
+      #custom-microphone,
+      #custom-public-ip,
+      #custom-gpu-temp,
+      #tray {
+        padding: 2px 4px;
+        margin: 0 2px;
+        border-radius: 8px;
+        background-color: @bg-inactive;
+        color: @fg-normal;
+      }
 
-        /* Individual module tweaks */
-        #clock {
-          color: @fg-accent;
-        }
+      /* Individual module tweaks */
+      #clock {
+        color: @fg-accent;
+      }
 
-        #cpu,
-        #memory {
-          color: @fg-normal;
-        }
+      #cpu,
+      #memory {
+        color: @fg-normal;
+      }
 
-        #temperature {
-          color: @fg-normal;
-        }
+      #temperature {
+        color: @fg-normal;
+      }
 
-        #disk {
-          color: @aqua;
-        }
+      #disk {
+        color: @aqua;
+      }
 
-        #battery {
-          color: @fg-success;
-        }
+      #battery {
+        color: @fg-success;
+      }
 
-        #battery.warning:not(.charging) {
-          color: @fg-warning;
-        }
+      #battery.warning:not(.charging) {
+        color: @fg-warning;
+      }
 
-        #battery.critical:not(.charging) {
-          color: @fg-critical;
-        }
+      #battery.critical:not(.charging) {
+        color: @fg-critical;
+      }
 
-        #pulseaudio {
-          color: @fg-normal;
-        }
+      #pulseaudio {
+        color: @fg-normal;
+      }
 
-        #custom-public-ip {
-          color: @fg-link;
-        }
+      #custom-public-ip {
+        color: @fg-link;
+      }
 
-        #network {
-          color: @aqua;
-        }
+      #network {
+        color: @aqua;
+      }
 
-        #network.disconnected {
-          color: @fg-muted;
-        }
+      #network.disconnected {
+        color: @fg-muted;
+      }
 
-        /* Tray icons */
-        #tray {
-          background-color: @bg-inactive;
-          margin: 0 3px;
-        }
+      /* Tray icons */
+      #tray {
+        background-color: @bg-inactive;
+        margin: 0 3px;
+      }
 
-        #custom-notification {
-          color: @yellow;
-          padding-right: 8px;
-        }
-      '';
+      #custom-notification {
+        color: @yellow;
+        padding-right: 8px;
+      }
+    '';
 
   };
   # };
@@ -326,27 +333,26 @@
     package = pkgs.adwaita-icon-theme;
     size = 50;
   };
-  home.packages = with pkgs;
-    [
-      kitty # Terminal
-      grim
-      slurp # Screenshots
-      swappy # Annotate screenshots
-      # should i keep these ?
-      swww # background manager
-      wofi # launcher
-      adwaita-icon-theme
-      hyprpolkitagent # allow apps to ask credentials
-      pavucontrol # audio control
-      pamixer # used to detect if mic is on
-      pipewire # audio stuff
-      pulseaudio # audio stuff
-      foot # terminal
-      libmtp # to connect to android phone
-      nautilus # file manager
-      networkmanagerapplet # network manager
+  home.packages = with pkgs; [
+    kitty # Terminal
+    grim
+    slurp # Screenshots
+    swappy # Annotate screenshots
+    # should i keep these ?
+    swww # background manager
+    wofi # launcher
+    adwaita-icon-theme
+    hyprpolkitagent # allow apps to ask credentials
+    pavucontrol # audio control
+    pamixer # used to detect if mic is on
+    pipewire # audio stuff
+    pulseaudio # audio stuff
+    foot # terminal
+    libmtp # to connect to android phone
+    nautilus # file manager
+    networkmanagerapplet # network manager
 
-    ];
+  ];
 
   services.gammastep = {
     enable = true;
@@ -364,14 +370,13 @@
     "application/x-gnome-saved-search" = [ "org.gnome.Nautilus.desktop" ];
   };
 
-
   # set default file browser
   services.mako = {
     # Notifications
     enable = true;
     settings = {
 
-      default-timeout = 5000; #  milliseconds
+      default-timeout = 5000; # milliseconds
     };
   };
 }

@@ -15,14 +15,16 @@
   # ------------------------------------------------------------
 
   config.flake.factory.shell-aliases =
-    { username, extra ? { } }:
+    {
+      username,
+      extra ? { },
+    }:
     let
       common = {
         ll = "ls -alh";
         gs = "git status";
 
-        nix-clean =
-          "nix-collect-garbage -d && nix store optimise && nix-store --verify --check-contents --repair";
+        nix-clean = "nix-collect-garbage -d && nix store optimise && nix-store --verify --check-contents --repair";
 
         nrb = "nh os boot . -- --accept-flake-config";
         nrs = "nh os switch . -- --accept-flake-config";

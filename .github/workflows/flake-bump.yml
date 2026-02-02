@@ -1,6 +1,6 @@
 name: flake-bump
 on:
-#   schedule: 
+#   schedule:
 #     - cron: '0 12 * * 3'
   workflow_dispatch:
 
@@ -20,7 +20,7 @@ jobs:
       # - uses: wimpysworld/nothing-but-nix@main
       #   with:
       #     hatchet-protocol: 'Rampage'
-      #     witness-carnage: false 
+      #     witness-carnage: false
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
@@ -36,7 +36,7 @@ jobs:
           branch: master
           commit_options: '--no-verify --signoff'
           file_pattern: flake.lock
-          commit_user_name: Flake Bot 
-          commit_author: Flake Bot <actions@github.com> 
-          skip_dirty_check: false    
+          commit_user_name: Flake Bot
+          commit_author: Flake Bot <actions@github.com>
+          skip_dirty_check: false
           skip_fetch: true

@@ -1,206 +1,215 @@
-{ inputs, lib, ... }: {
+{ inputs, lib, ... }:
+{
 
-  flake.nixosModules.window-compositor = { pkgs, ... }: {
+  flake.nixosModules.window-compositor =
+    { pkgs, ... }:
+    {
 
-    home-manager.sharedModules = [
-      inputs.self.homeModules.window-compositor
-    ];
-
-
-    # Enable the X11 windowing system.
-    services.xserver.enable = true;
-    services.displayManager.sddm.enable = true;
-    services.displayManager.sddm.wayland.enable = true;
-
-    # every program used by the desktop environment should be here
-    environment.systemPackages = with pkgs; [
-      hyprland # Wayland compositor
-      waybar # Status bar
-      kitty # Terminal emulator
-      grim # Screenshots
-      slurp # Select regions for screenshots
-      mako # Notifications
-      swappy # Annotate screenshots
-      xwayland
-    ];
-
-    programs.hyprland.enable = true;
-    programs.hyprland.withUWSM = true;
-    stylix = {
-      enable = true;
-
-      # Palette Gruvbox Dark Medium
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
-    };
-
-  };
-  flake.homeModules.window-compositor = { pkgs, ... }: {
-    wayland.windowManager.hyprland = {
-      enable = true;
-      # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
-      package = null;
-      systemd.enable = false;
-      portalPackage = null;
-      settings = {
-        env = [
-          "FILE_MANAGER,nautilus"
-        ];
-        "$mod" = "SUPER";
-        general = {
-          "col.active_border" = lib.mkForce "rgb(d79921)";
-          gaps_in = 3;
-          gaps_out = 5;
-          border_size = 2;
-
-        };
-        decoration = {
-          rounding = 10;
-          blur.enabled = false;
-          shadow.enabled = false;
-        };
-        input = {
-          kb_layout = "us,fr";
-          kb_variant = "intl,";
-          kb_options = "grp:win_space_toggle";
-        };
-        misc = {
-          enable_swallow = true;
-          swallow_regex = "^(kitty|foot|alacritty|footclient)$";
-        };
-        animations = {
-          enabled = false;
-        };
-
-        # Keybindings
-        bind = [
-          "$mod,Return, exec, foot"
-          "$mod,T, exec, kitty"
-          "$mod,B, exec, firefox"
-          "$mod,E, exec, $FILE_MANAGER"
-          "$mod,D, exec, wofi --show drun -D key_expand=Tab"
-          "$mod,Q, killactive"
-          "$mod,M, exit"
-          "$mod,1, workspace, 1"
-          "$mod,2, workspace, 2"
-          "$mod,3, workspace, 3"
-          "$mod SHIFT,R, exec, hyprctl, reload"
-          "$mod SHIFT,1, movetoworkspace, 1"
-          "$mod SHIFT,2, movetoworkspace, 2"
-          "$mod SHIFT,3, movetoworkspace, 3"
-          "$mod,H, movefocus, l"
-          "$mod,L, movefocus, r"
-          "$mod,K, movefocus, u"
-          "$mod,J, movefocus, d"
-          "$mod,V, togglesplit"
-          "$mod,F, fullscreen"
-          "$mod SHIFT,Space, togglefloating"
-          "SUPER SHIFT,H, swapwindow, l"
-          "SUPER SHIFT,L, swapwindow, r"
-          "SUPER SHIFT,K, swapwindow, u"
-          "SUPER SHIFT,J, swapwindow, d"
-        ];
-        bindm = [
-          "$mod, mouse:272, movewindow"
-          "$mod, mouse:273, resizewindow"
-        ];
-
-        # Autostart (Waybar, Mako)
-        exec-once = [
-          "waybar"
-          "mako"
-          "swww-daemon &"
-          "swww img ~/git/nixos-config/home-manager/common/background3.png"
-          "systemctl --user start hyprpolkitagent "
-        ];
-      };
-    };
-
-    programs.waybar = {
-      enable = true;
-      settings = [
-        {
-          layer = "top";
-          position = "top";
-          # height = 36;
-
-          modules-left = [
-            "hyprland/workspaces"
-          ];
-          modules-center = [
-            "clock"
-          ];
-          modules-right = [
-            "tray"
-            "custom/public-ip"
-            "custom/gpu-temp"
-            "temperature"
-            "battery"
-            "pulseaudio"
-            "hyprland/language"
-          ];
-          "hyprland/language" = {
-            format = "{short}";
-            format-alt = "{short}";
-          };
-          clock = {
-            format = "{:%d/%m - %H:%M}";
-          };
-
-          network = {
-            # not enabled because there is a network tool in system tray
-            #"format-wifi" = "  {essid} ({signalStrength}%)";
-            "format-ethernet" = "Eth";
-            "format-disconnected" = "󰤭  Offline";
-            "on-click" = "nm-connection-editor";
-          };
-
-          battery = {
-            format = "{icon}  {capacity}%";
-            format-icons = [ "" "" "" "" "" ];
-          };
-
-          pulseaudio = {
-            format = "  {volume}%";
-            format-muted = "🔇 Muted";
-            scroll-step = 5; # Volume step with mouse wheel
-            on-click = "pavucontrol"; # Open gui
-          };
-
-          tray = {
-            icon-size = 16;
-            spacing = 10;
-          };
-
-          temperature = {
-            hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
-            format = "CPU: {temperatureC}°C";
-            critical-threshold = 90;
-            interval = 5;
-          };
-          "custom/gpu-temp" = {
-            exec = ''
-              temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n1)
-
-              if [ -n "$temp" ] && [ "$temp" != "N/A" ]; then
-                echo "GPU: $temp°C"
-              else
-                echo ""
-              fi
-            '';
-            interval = 5;
-            return-type = "text";
-          };
-
-          "custom/public-ip" = {
-            exec = "curl -L -4 iprs.fly.dev || echo N/A";
-            interval = 5;
-            return-type = "text";
-            format = "🌍 {}";
-          };
-        }
+      home-manager.sharedModules = [
+        inputs.self.homeModules.window-compositor
       ];
-      style =
-        ''
+
+      # Enable the X11 windowing system.
+      services.xserver.enable = true;
+      services.displayManager.sddm.enable = true;
+      services.displayManager.sddm.wayland.enable = true;
+
+      # every program used by the desktop environment should be here
+      environment.systemPackages = with pkgs; [
+        hyprland # Wayland compositor
+        waybar # Status bar
+        kitty # Terminal emulator
+        grim # Screenshots
+        slurp # Select regions for screenshots
+        mako # Notifications
+        swappy # Annotate screenshots
+        xwayland
+      ];
+
+      programs.hyprland.enable = true;
+      programs.hyprland.withUWSM = true;
+      stylix = {
+        enable = true;
+
+        # Palette Gruvbox Dark Medium
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+      };
+
+    };
+  flake.homeModules.window-compositor =
+    { pkgs, ... }:
+    {
+      wayland.windowManager.hyprland = {
+        enable = true;
+        # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+        package = null;
+        systemd.enable = false;
+        portalPackage = null;
+        settings = {
+          env = [
+            "FILE_MANAGER,nautilus"
+          ];
+          "$mod" = "SUPER";
+          general = {
+            "col.active_border" = lib.mkForce "rgb(d79921)";
+            gaps_in = 3;
+            gaps_out = 5;
+            border_size = 2;
+
+          };
+          decoration = {
+            rounding = 10;
+            blur.enabled = false;
+            shadow.enabled = false;
+          };
+          input = {
+            kb_layout = "us,fr";
+            kb_variant = "intl,";
+            kb_options = "grp:win_space_toggle";
+          };
+          misc = {
+            enable_swallow = true;
+            swallow_regex = "^(kitty|foot|alacritty|footclient)$";
+          };
+          animations = {
+            enabled = false;
+          };
+
+          # Keybindings
+          bind = [
+            "$mod,Return, exec, foot"
+            "$mod,T, exec, kitty"
+            "$mod,B, exec, firefox"
+            "$mod,E, exec, $FILE_MANAGER"
+            "$mod,D, exec, wofi --show drun -D key_expand=Tab"
+            "$mod,Q, killactive"
+            "$mod,M, exit"
+            "$mod,1, workspace, 1"
+            "$mod,2, workspace, 2"
+            "$mod,3, workspace, 3"
+            "$mod SHIFT,R, exec, hyprctl, reload"
+            "$mod SHIFT,1, movetoworkspace, 1"
+            "$mod SHIFT,2, movetoworkspace, 2"
+            "$mod SHIFT,3, movetoworkspace, 3"
+            "$mod,H, movefocus, l"
+            "$mod,L, movefocus, r"
+            "$mod,K, movefocus, u"
+            "$mod,J, movefocus, d"
+            "$mod,V, togglesplit"
+            "$mod,F, fullscreen"
+            "$mod SHIFT,Space, togglefloating"
+            "SUPER SHIFT,H, swapwindow, l"
+            "SUPER SHIFT,L, swapwindow, r"
+            "SUPER SHIFT,K, swapwindow, u"
+            "SUPER SHIFT,J, swapwindow, d"
+          ];
+          bindm = [
+            "$mod, mouse:272, movewindow"
+            "$mod, mouse:273, resizewindow"
+          ];
+
+          # Autostart (Waybar, Mako)
+          exec-once = [
+            "waybar"
+            "mako"
+            "swww-daemon &"
+            "swww img ~/git/nixos-config/home-manager/common/background3.png"
+            "systemctl --user start hyprpolkitagent "
+          ];
+        };
+      };
+
+      programs.waybar = {
+        enable = true;
+        settings = [
+          {
+            layer = "top";
+            position = "top";
+            # height = 36;
+
+            modules-left = [
+              "hyprland/workspaces"
+            ];
+            modules-center = [
+              "clock"
+            ];
+            modules-right = [
+              "tray"
+              "custom/public-ip"
+              "custom/gpu-temp"
+              "temperature"
+              "battery"
+              "pulseaudio"
+              "hyprland/language"
+            ];
+            "hyprland/language" = {
+              format = "{short}";
+              format-alt = "{short}";
+            };
+            clock = {
+              format = "{:%d/%m - %H:%M}";
+            };
+
+            network = {
+              # not enabled because there is a network tool in system tray
+              #"format-wifi" = "  {essid} ({signalStrength}%)";
+              "format-ethernet" = "Eth";
+              "format-disconnected" = "󰤭  Offline";
+              "on-click" = "nm-connection-editor";
+            };
+
+            battery = {
+              format = "{icon}  {capacity}%";
+              format-icons = [
+                ""
+                ""
+                ""
+                ""
+                ""
+              ];
+            };
+
+            pulseaudio = {
+              format = "  {volume}%";
+              format-muted = "🔇 Muted";
+              scroll-step = 5; # Volume step with mouse wheel
+              on-click = "pavucontrol"; # Open gui
+            };
+
+            tray = {
+              icon-size = 16;
+              spacing = 10;
+            };
+
+            temperature = {
+              hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
+              format = "CPU: {temperatureC}°C";
+              critical-threshold = 90;
+              interval = 5;
+            };
+            "custom/gpu-temp" = {
+              exec = ''
+                temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n1)
+
+                if [ -n "$temp" ] && [ "$temp" != "N/A" ]; then
+                  echo "GPU: $temp°C"
+                else
+                  echo ""
+                fi
+              '';
+              interval = 5;
+              return-type = "text";
+            };
+
+            "custom/public-ip" = {
+              exec = "curl -L -4 iprs.fly.dev || echo N/A";
+              interval = 5;
+              return-type = "text";
+              format = "🌍 {}";
+            };
+          }
+        ];
+        style = ''
           @define-color bg-main        #282828;
           @define-color bg-alt         #3c3836;
           @define-color bg-inactive    #504945;
@@ -349,17 +358,16 @@
           }
         '';
 
-    };
-    # };
-    # Add rice packages
-    home.pointerCursor = {
-      gtk.enable = true;
-      name = "Adwaita"; # Ou "Breeze", "Bibata-Modern-Ice", "Capitaine Cursors", etc.
-      package = pkgs.adwaita-icon-theme;
-      size = 50;
-    };
-    home.packages = with pkgs;
-      [
+      };
+      # };
+      # Add rice packages
+      home.pointerCursor = {
+        gtk.enable = true;
+        name = "Adwaita"; # Ou "Breeze", "Bibata-Modern-Ice", "Capitaine Cursors", etc.
+        package = pkgs.adwaita-icon-theme;
+        size = 50;
+      };
+      home.packages = with pkgs; [
         kitty # Terminal
         grim
         slurp # Screenshots
@@ -380,33 +388,32 @@
 
       ];
 
-    services.gammastep = {
-      enable = true;
-      latitude = "43.580799";
-      longitude = "7.123900";
-      temperature.day = 5200;
-      temperature.night = 3600;
-      tray = true;
-    };
+      services.gammastep = {
+        enable = true;
+        latitude = "43.580799";
+        longitude = "7.123900";
+        temperature.day = 5200;
+        temperature.night = 3600;
+        tray = true;
+      };
 
-    # set nautilus as default file manager
-    xdg.mimeApps.enable = true;
-    xdg.mimeApps.defaultApplications = {
-      "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
-      "application/x-gnome-saved-search" = [ "org.gnome.Nautilus.desktop" ];
-    };
+      # set nautilus as default file manager
+      xdg.mimeApps.enable = true;
+      xdg.mimeApps.defaultApplications = {
+        "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+        "application/x-gnome-saved-search" = [ "org.gnome.Nautilus.desktop" ];
+      };
 
+      # set default file browser
+      services.mako = {
+        # Notifications
+        enable = true;
+        settings = {
 
-    # set default file browser
-    services.mako = {
-      # Notifications
-      enable = true;
-      settings = {
-
-        default-timeout = 5000; #  milliseconds
+          default-timeout = 5000; # milliseconds
+        };
       };
     };
-  };
   # TODO auxiliary module for hyuprland home-manager
 
 }

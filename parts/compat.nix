@@ -1,6 +1,12 @@
 { inputs, ... }:
 let
-  inherit (inputs) nixpkgs home-manager nixvim disko stylix;
+  inherit (inputs)
+    nixpkgs
+    home-manager
+    nixvim
+    disko
+    stylix
+    ;
 
   system = "x86_64-linux";
 
@@ -31,18 +37,19 @@ let
   ];
 
   mkNixos =
-    { name
-    , user ? "anthony"
-    , home-manager-directory
-    , extraModules ? [ ]
-    , desktop ? false
+    {
+      name,
+      user ? "anthony",
+      home-manager-directory,
+      extraModules ? [ ],
+      desktop ? false,
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
-      modules =
-        (commonBaseModules
-          ++ (if desktop then commonDesktopModules else [ ])
-          ++ [
+      modules = (
+        commonBaseModules
+        ++ (if desktop then commonDesktopModules else [ ])
+        ++ [
           ./../nixos-configs/${name}/configuration.nix
 
           {
@@ -51,16 +58,18 @@ let
             home-manager.backupFileExtension = "";
 
             home-manager.sharedModules =
-              hmCommonBaseModules
-                ++ (if desktop then hmCommonDesktopModules else [ ]);
+              hmCommonBaseModules ++ (if desktop then hmCommonDesktopModules else [ ]);
 
-            home-manager.users.${user} =
-              import ./../home-manager/${home-manager-directory}/home.nix;
+            home-manager.users.${user} = import ./../home-manager/${home-manager-directory}/home.nix;
 
-            nix.settings.trusted-users = [ "root" user ];
+            nix.settings.trusted-users = [
+              "root"
+              user
+            ];
           }
         ]
-          ++ extraModules);
+        ++ extraModules
+      );
     };
 
   mkNixosHost = args: mkNixos (args // { desktop = true; });
