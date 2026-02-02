@@ -43,15 +43,29 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
   };
 
-  outputs = inputs@{ flake-parts, import-tree, ... }:
+  outputs =
+    inputs@{ flake-parts, import-tree, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
       imports = [
+        inputs.home-manager.flakeModules.home-manager
         (import-tree ./modules)
         ./parts/compat.nix
+        inputs.git-hooks-nix.flakeModule
       ];
+      perSystem =
+        { config, ... }:
+        {
+          pre-commit = {
+            check.enable = true;
+            settings.hooks.nixfmt.enable = true;
+          };
+
+          devShells.default = config.pre-commit.devShell;
+        };
     };
 }
