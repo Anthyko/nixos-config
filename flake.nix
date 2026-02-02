@@ -62,7 +62,11 @@
         {
           pre-commit = {
             check.enable = false;
-            settings.hooks.nixfmt.enable = true;
+            settings.hooks = {
+              nixfmt.enable = true;
+              end-of-file-fixer.enable = true;
+              trim-trailing-whitespace.enable = true;
+            };
           };
 
           devShells.default = config.pre-commit.devShell;
