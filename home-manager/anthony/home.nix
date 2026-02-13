@@ -37,6 +37,8 @@ in
     r2modman
     usbutils
     gnupg
+  mumble
+
   ]);
 
   home.sessionVariables = {

@@ -8,7 +8,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./modules/fail2ban.nix
-    ./modules/teamspeak.nix
+    ./modules/murmur.nix
     ./modules/openssh.nix
     ./modules/users.nix
     ./modules/radicale.nix
