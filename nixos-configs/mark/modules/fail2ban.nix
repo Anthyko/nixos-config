@@ -22,7 +22,7 @@
     bantime-increment = {
       enable = true;
       factor = "2";
-      formula = "bantime * (factor ** (attempts - 1))";
+      formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
       maxtime = "2h";
     };
 
