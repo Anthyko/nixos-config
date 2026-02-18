@@ -29,6 +29,10 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -51,6 +55,7 @@
     , nixvim
     , disko
     , stylix
+    , sops-nix
     , ...
     }:
     let
@@ -58,6 +63,7 @@
 
       commonBaseModules = [
         home-manager.nixosModules.home-manager
+        sops-nix.nixosModules.sops
         ./nixos-configs/common-modules/syncthing.nix
         ./nixos-configs/common-modules/ntp.nix
         ./nixos-configs/common-modules/nix.nix
