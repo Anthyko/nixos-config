@@ -2,6 +2,15 @@
 , pkgs
 , ...
 }: {
+  sops.secrets."radicale" = {
+    sopsFile = ../../../secrets/radicale.yaml;
+    format = "yaml";
+    owner = "radicale";
+    group = "radicale";
+    key = "htpasswd";
+    mode = "0400";
+  };
+
   services.radicale = {
     enable = true;
 
@@ -13,7 +22,7 @@
 
       auth = {
         type = "htpasswd";
-        htpasswd_filename = "/etc/radicale/htpasswd";
+        htpasswd_filename = config.sops.secrets."radicale".path;
         htpasswd_encryption = "bcrypt";
       };
 
