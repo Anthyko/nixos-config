@@ -31,8 +31,6 @@ in
     ifuse
     libimobiledevice
     # --
-    wineWowPackages.stable
-    teamspeak6-client
     lutris
     r2modman
     usbutils
