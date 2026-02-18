@@ -70,6 +70,7 @@
         ./nixos-configs/common-modules/ssh-agent.nix
         ./nixos-configs/common-modules/dns.nix
         ./nixos-configs/common-modules/tailscale.nix
+        ./nixos-configs/common-modules/sops.nix
       ];
 
       commonDesktopModules = [

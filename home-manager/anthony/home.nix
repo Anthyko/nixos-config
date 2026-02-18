@@ -35,7 +35,7 @@ in
     r2modman
     usbutils
     gnupg
-  mumble
+    mumble
 
   ]);
 
