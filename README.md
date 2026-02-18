@@ -19,6 +19,10 @@ Mark : vps
 
 Revan : dev vm
 
+### Sops
+
+The age key file must be : in `/var/lib/sops-nix/keys.txt`
+
 
 # Todo first : Enable flakes
 
