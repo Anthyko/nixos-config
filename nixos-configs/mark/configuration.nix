@@ -14,6 +14,7 @@
     ./modules/radicale.nix
     ./modules/nginx.nix
     ./modules/woodpecker.nix
+    ./modules/search-engine.nix
     ./disk-config.nix
   ];
   boot.loader.grub = {
