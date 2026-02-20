@@ -27,7 +27,6 @@ in
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-  services.syncthing.enable = true;
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
