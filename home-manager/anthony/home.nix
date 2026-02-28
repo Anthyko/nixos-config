@@ -20,7 +20,6 @@ in
     neofetch
     lf
     fd
-    calibre
     easyeffects
     dig
     libreoffice-still
