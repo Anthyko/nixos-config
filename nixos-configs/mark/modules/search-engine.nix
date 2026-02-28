@@ -5,7 +5,7 @@
 let
  tailscale_domain = "mark.tailf9979f.ts.net";
   tailscale_ip="100.118.197.94";
-  tailscale_cert_directory = "/var/lib/tailscale/auto-certs";
+  tailscale_cert_directory = "/var/lib/tailscale-auto-certs";
 in
 {
 
@@ -29,35 +29,31 @@ in
     };
 # setup reverse proxy
 
-  # services.nginx = {
-  #   enable = true;
-  #   recommendedProxySettings = true;
-  #   recommendedTlsSettings = true;
-  #
-  #   virtualHosts."${tailscale_domain}" = {
-  #     listen = [
-  #       { addr = tailscale_ip; port = 443; ssl = true; }
-  #     ];
-  #
-  #   onlySSL = true;
-  #     sslCertificate = "${tailscale_cert_directory}/${tailscale_domain}.crt";
-  #     sslCertificateKey = "${tailscale_cert_directory}/${tailscale_domain}.key";
-  #
-  #     locations."/search" = {
-  #       proxyPass = "http://127.0.0.1:8081";
-  #       proxyWebsockets = true;
-  #     };
-  #   };
-  # };
-  #
+  services.nginx = {
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+
+    virtualHosts."${tailscale_domain}" = {
+      listen = [
+        { addr = tailscale_ip; port = 443; ssl = true; }
+      ];
+
+    onlySSL = true;
+      sslCertificate = "${tailscale_cert_directory}/${tailscale_domain}.crt";
+      sslCertificateKey = "${tailscale_cert_directory}/${tailscale_domain}.key";
+
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8081";
+        proxyWebsockets = true;
+      };
+    };
+  };
+
   # setup permission to allow nginx to read certificates
   systemd.services.tailscale-cert-searx = {
 
     description = "Fetch/renew Tailscale TLS cert for nginx";
-    after = [ "tailscaled.service" "network-online.target" ];
-    wants = [ "network-online.target" ];
 
-    before = [ "nginx.service" ];
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = { Type = "oneshot"; UMask = "0077"; };
