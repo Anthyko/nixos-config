@@ -20,7 +20,7 @@ in
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    defaultKeymap = "emacs";
+    defaultKeymap = "viins";
     completionInit = "autoload -Uz compinit && compinit -C";
     initContent = lib.mkBefore ''
       export PATH="$HOME/bin:$PATH"
@@ -49,6 +49,7 @@ in
       plugins = [
         { name = "zsh-users/zsh-autosuggestions"; }
         { name = "MichaelAquilina/zsh-you-should-use"; }
+        { name = "jeffreytse/zsh-vi-mode"; }
         {
           name = "mafredri/zsh-async";
           tags = [ "from:github" ];
