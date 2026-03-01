@@ -13,8 +13,8 @@
   services.polkit-gnome.enable = true; # polkit
   home.packages = with pkgs; [
     swaybg # wallpaper
+    xwayland-satellite
   ];
-  
   # used niri config file
   xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
 }
