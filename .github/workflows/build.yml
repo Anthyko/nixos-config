@@ -62,7 +62,7 @@ jobs:
     needs: [build-home-manager,discover]
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
