@@ -13,8 +13,8 @@
     xwayland
   ];
 
-  programs.hyprland.enable = true;
-  programs.hyprland.withUWSM = true;
+  programs.hyprland.enable = false;
+  programs.hyprland.withUWSM = false;
   stylix = {
     enable = true;
 

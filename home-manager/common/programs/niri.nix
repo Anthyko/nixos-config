@@ -3,6 +3,7 @@
 {
   imports =  [
     ./foot.nix
+    ./waybar.nix
     ];
   programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
   programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
