@@ -75,8 +75,10 @@
 
       commonDesktopModules = [
         stylix.nixosModules.stylix
-        ./nixos-configs/common-modules/hyprland.nix
+        #        ./nixos-configs/common-modules/hyprland.nix
         ./nixos-configs/common-modules/desktop-env.nix
+        ./nixos-configs/common-modules/niri.nix
+
       ];
 
       hmCommonBaseModules = [
@@ -85,7 +87,8 @@
       ];
 
       hmCommonDesktopModules = [
-        ./home-manager/common/programs/hyprland.nix
+        # ./home-manager/common/programs/hyprland.nix
+        ./home-manager/common/programs/niri.nix
         ./home-manager/common/programs/foot.nix
         ./home-manager/common/programs/mpv.nix
       ];
