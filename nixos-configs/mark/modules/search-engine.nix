@@ -3,8 +3,8 @@
 , ...
 }:
 let
- tailscale_domain = "mark.tailf9979f.ts.net";
-  tailscale_ip="100.118.197.94";
+  tailscale_domain = "mark.tailf9979f.ts.net";
+  tailscale_ip = "100.118.197.94";
   tailscale_cert_directory = "/var/lib/tailscale-auto-certs";
 in
 {
@@ -18,17 +18,36 @@ in
   };
 
   services.searx = {
-  enable = true;
-  environmentFile = config.sops.secrets."searx/env".path;
-  settings.server = {
-    bind_address = "127.0.0.1";
-    port = 8081;
-    secret_key = "$SEARXNG_SECRET";
-  };
+    enable = true;
+    environmentFile = config.sops.secrets."searx/env".path;
+    settings = {
+      server = {
+        bind_address = "127.0.0.1";
+        port = 8081;
+        secret_key = "$SEARXNG_SECRET";
+      };
+
+      general = {
+        debug = false;
+        instance_name = "SearXNG Instance";
+        donation_url = false;
+        contact_url = false;
+        privacypolicy_url = false;
+        enable_metrics = false;
+      };
+
+      enabled_plugins = [
+        "Basic Calculator"
+        "Hash plugin"
+        "Open Access DOI rewrite"
+        "Hostnames plugin"
+        "Unit converter plugin"
+        "Tracker URL remover"
+      ];
 
     };
-# setup reverse proxy
-
+    # setup reverse proxy
+  };
   services.nginx = {
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
@@ -38,7 +57,7 @@ in
         { addr = tailscale_ip; port = 443; ssl = true; }
       ];
 
-    onlySSL = true;
+      onlySSL = true;
       sslCertificate = "${tailscale_cert_directory}/${tailscale_domain}.crt";
       sslCertificateKey = "${tailscale_cert_directory}/${tailscale_domain}.key";
 
@@ -82,5 +101,4 @@ in
       Persistent = true;
     };
   };
-
 }
