@@ -12,7 +12,7 @@
   services.adguardhome = {
     enable = true;
     mutableSettings = false; # only declarative config hehe
-    host = "127.0.0.1"; 
+    host = "127.0.0.1";
     settings = {
       dns = {
         # REQUIRED: List of bootstrap DNS servers for DoH/DoT name resolution
