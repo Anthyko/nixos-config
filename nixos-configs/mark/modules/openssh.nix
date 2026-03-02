@@ -4,7 +4,7 @@
 }: {
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [ 13076 ];
     openFirewall = true;
     settings = {
       PasswordAuthentication = false;
