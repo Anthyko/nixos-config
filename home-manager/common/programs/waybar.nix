@@ -80,6 +80,11 @@
           return-type = "text";
           format = "🌍 {}";
         };
+
+        "niri/workspaces" = {
+          current-only=true;
+        };
+
       }
     ];
      style =
@@ -118,9 +123,6 @@
           background-color: transparent;
         }
 
-        window#waybar.hidden {
-          opacity: 0.2;
-        }
 
         /* Modules containers */
         .modules-left,
@@ -148,7 +150,7 @@
           background: @fg-critical;
           color: @bg-main;
         }
-
+        
         #workspaces button.active {
           background: @bg-focus;
           color: @fg-normal;
