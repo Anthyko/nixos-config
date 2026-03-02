@@ -54,12 +54,12 @@
           spacing = 10;
         };
 
-        # temperature = {
-        #   hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
-        #   format = "CPU: {temperatureC}°C";
-        #   critical-threshold = 90;
-        # #   interval = 5;
-        # # };
+        temperature = {
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+          format = "CPU: {temperatureC}°C";
+          critical-threshold = 90;
+           interval = 5;
+         };
         "custom/gpu-temp" = {
           exec = ''
             temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n1)
