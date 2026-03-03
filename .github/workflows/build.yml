@@ -62,13 +62,13 @@ jobs:
     needs: [build-home-manager,discover]
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v4
       - uses: wimpysworld/nothing-but-nix@main
         with:
-          witness-carnage: true
+          witness-carnage: false
           hatchet-protocol: 'rampage' 
       - uses: cachix/install-nix-action@v27
         with:
