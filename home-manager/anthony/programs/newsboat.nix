@@ -6,6 +6,7 @@
     enable = true;
     autoReload = true;
     browser = "firefox";
+    autoVacuum.enable = true;
     urls = [
       { url = "https://nixos.org/blog/announcements-rss.xml"; }
       { url = "https://www.reddit.com/r/linux_gaming/top/.rss?sort=top&t=week"; }
