@@ -17,7 +17,6 @@ in
     exfat
     rclone
     vial
-    neofetch
     lf
     fd
     easyeffects
