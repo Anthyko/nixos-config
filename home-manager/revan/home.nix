@@ -41,7 +41,7 @@
   };
   imports = [
     (import ../common/programs/zsh-base.nix {
-      extraAliases = { hmrs = "nh home switch --accept-flake-config ~/nixos-config -c revan" };
+      extraAliases = { hmrs = "nh home switch --accept-flake-config ~/nixos-config -c revan"; };
     })
   ];
   # Let Home Manager install and manage itself.
