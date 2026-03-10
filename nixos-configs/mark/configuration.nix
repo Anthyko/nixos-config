@@ -41,7 +41,7 @@
 
     operation = "switch";
 
-    dates = "19:00";
+    dates = "09:00";
     flags = [
       "--accept-flake-config"
     ];
