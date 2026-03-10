@@ -5,11 +5,12 @@
 let
   domain = "vps.datantho.ovh";
   certDir = config.security.acme.certs.${domain}.directory;
-in{
+in
+{
 
   # Create a new group for nginx and murmur
   # This group is set has owner of the cert
-  users.groups.certreaders = {};
+  users.groups.certreaders = { };
   users.users.nginx.extraGroups = [ "certreaders" ];
   users.users.murmur.extraGroups = [ "certreaders" ];
   security.acme = {
@@ -22,8 +23,8 @@ in{
   services.nginx.virtualHosts.${domain} = {
     enableACME = true;
     forceSSL = true;
-      # locations."/" = {
-      #proxyPass = "http://127.0.0.1:3000";
+    # locations."/" = {
+    #proxyPass = "http://127.0.0.1:3000";
     #};
   };
   sops.secrets."murmur/env" = {
@@ -40,7 +41,7 @@ in{
     password = "$MURMURD_PASSWORD";
 
     sslCert = "${certDir}/fullchain.pem";
-    sslKey  = "${certDir}/key.pem";
-    sslCa   = "${certDir}/chain.pem";
+    sslKey = "${certDir}/key.pem";
+    sslCa = "${certDir}/chain.pem";
   };
 }

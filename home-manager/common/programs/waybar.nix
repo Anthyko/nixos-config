@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 {
- 
-   programs.waybar = {
+
+  programs.waybar = {
     enable = true;
     settings = [
       {
@@ -58,8 +58,8 @@
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           format = "CPU: {temperatureC}°C";
           critical-threshold = 90;
-           interval = 5;
-         };
+          interval = 5;
+        };
         "custom/gpu-temp" = {
           exec = ''
             temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits 2>/dev/null | head -n1)
@@ -82,12 +82,12 @@
         };
 
         "niri/workspaces" = {
-          current-only=true;
+          current-only = true;
         };
 
       }
     ];
-     style =
+    style =
       ''
         @define-color bg-main        #282828;
         @define-color bg-alt         #3c3836;
@@ -234,5 +234,5 @@
         }
       '';
 
- }; 
+  };
 }

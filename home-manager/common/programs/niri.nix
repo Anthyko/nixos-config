@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =  [
+  imports = [
     ./foot.nix
     ./waybar.nix
-    ];
+  ];
   programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
   programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
@@ -13,8 +13,8 @@
   home.packages = with pkgs; [
     swaybg # wallpaper
     xwayland-satellite
-      networkmanagerapplet # network manager
-      pavucontrol # audio control
+    networkmanagerapplet # network manager
+    pavucontrol # audio control
   ];
   # used niri config file
   xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
