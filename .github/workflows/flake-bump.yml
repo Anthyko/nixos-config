@@ -4,39 +4,30 @@ on:
 #     - cron: '0 12 * * 3'
   workflow_dispatch:
 
-
-env:
-  CACHIX_NAME: ${{ secrets.CACHIX_NAME }}
-  CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
-
 jobs:
-  flake-bump-and-build:
+   update-flake-inputs:
+    runs-on: ubuntu-latest
     permissions:
       contents: write
-    runs-on: ubuntu-latest
+      pull-requests: write
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      # - uses: wimpysworld/nothing-but-nix@main
-      #   with:
-      #     hatchet-protocol: 'Rampage'
-      #     witness-carnage: false 
-
-      - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@main
-      - name: Run flake bump
-        id: bump
-        run: |
-          ./flake-bump.sh
-
-      - name: Auto commit updated flake.lock
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Generate GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
         with:
-          commit_message: Bump flake.lock
-          branch: master
-          commit_options: '--no-verify --signoff'
-          file_pattern: flake.lock
-          commit_user_name: Flake Bot 
-          commit_author: Flake Bot <actions@github.com> 
-          skip_dirty_check: false    
-          skip_fetch: true
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Setup Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Update flake inputs
+        uses: mic92/update-flake-inputs@main
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
