@@ -1,7 +1,7 @@
 name: flake-bump
 on:
-#   schedule: 
-#     - cron: '0 12 * * 3'
+  schedule: 
+    - cron: '0 12 * * 3'
   workflow_dispatch:
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           token: ${{ steps.app-token.outputs.token }}
 
