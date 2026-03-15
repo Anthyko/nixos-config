@@ -24,6 +24,7 @@ in
     completionInit = "autoload -Uz compinit && compinit -C";
     initContent = lib.mkBefore ''
       export PATH="$HOME/bin:$PATH"
+      export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
       zcompile ~/.zshrc
       fcd() {
         local dir
