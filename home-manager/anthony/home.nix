@@ -34,6 +34,7 @@ in
     usbutils
     gnupg
     mumble
+    python3
 
   ]);
 
