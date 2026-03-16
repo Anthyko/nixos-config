@@ -1,11 +1,12 @@
 name: Build-configs
-# i'll put this here for now
 on:
-#   schedule: 
-#     - cron: '0 12 * * 3'
   workflow_dispatch:
-  pull_request:
+  push:
+  branches: [ master ]
 
+concurrency:
+  group: master-build
+  cancel-in-progress: true
 
 
 env:
@@ -19,6 +20,8 @@ jobs:
       HM_PROFILE: revan
       CACHIX: dat-antho-shared
     steps:
+      - name: Wait for batch merges
+        run: sleep 120
       - uses: actions/checkout@v6
 
       - uses: cachix/install-nix-action@v31
