@@ -20,8 +20,6 @@ jobs:
       HM_PROFILE: revan
       CACHIX: dat-antho-shared
     steps:
-      - name: Wait for batch merges
-        run: sleep 120
       - uses: actions/checkout@v6
 
       - uses: cachix/install-nix-action@v31
