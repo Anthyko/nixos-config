@@ -35,6 +35,7 @@ in
     gnupg
     mumble
     python3
+    poetry
 
   ]);
 
