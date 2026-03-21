@@ -1,0 +1,9 @@
+{ inputs, ... }: {
+
+  flake.nixosModules.base = {
+  imports = with inputs.self.nixosModules; [
+    dns-server
+    ntp
+  ];
+  };
+}
