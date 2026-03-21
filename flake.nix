@@ -56,17 +56,17 @@
     };
   };
 
-  outputs = inputs@{
-    self,
-    flake-parts,
-    nixpkgs,
-    home-manager,
-    nixvim,
-    disko,
-    stylix,
-    sops-nix,
-    ...
-  }:
+  outputs =
+    inputs@{ self
+    , flake-parts
+    , nixpkgs
+    , home-manager
+    , nixvim
+    , disko
+    , stylix
+    , sops-nix
+    , ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
