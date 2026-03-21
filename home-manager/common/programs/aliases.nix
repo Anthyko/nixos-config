@@ -16,8 +16,8 @@ let
     nfmt = "nix run .#formatter.x86_64-linux -- .";
     f = "fcd";
     blk = "lsblk -o NAME,SIZE,MODEL,MOUNTPOINT";
-    lspr = "export PRS=$(gh pr list --state closed --json number | jq '.[].number') && for i in $PRS;do gh pr view $i;done";
-    mpr = "for i in $PRS;do gh pr merge -d -r $i;done";
+    lsprs = "export PRS=$(gh pr list --state closed --json number | jq '.[].number') && for i in $PRS;do gh pr view $i;done";
+    mprs = "for i in $PRS;do gh pr merge -d -r $i;done";
   };
 
 in
