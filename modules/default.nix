@@ -1,123 +1,123 @@
-{inputs,self,...}:
+{ inputs, self, ... }:
 let
-          system = "x86_64-linux";
-          lib = inputs.nixpkgs.lib;
+  system = "x86_64-linux";
+  lib = inputs.nixpkgs.lib;
 
-          pkgsFor = system: import inputs.nixpkgs { inherit system; };
+  pkgsFor = system: import inputs.nixpkgs { inherit system; };
 
-          commonBaseModules = [
-            inputs.home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
+  commonBaseModules = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
 
-            ../nixos-configs/common-modules/syncthing.nix
-            ../nixos-configs/common-modules/ntp.nix
-            ../nixos-configs/common-modules/nix.nix
-            ../nixos-configs/common-modules/ssh-agent.nix
-            ../nixos-configs/common-modules/dns.nix
-            ../nixos-configs/common-modules/tailscale.nix
-            ../nixos-configs/common-modules/sops.nix
-          ];
+    ../nixos-configs/common-modules/syncthing.nix
+    ../nixos-configs/common-modules/ntp.nix
+    ../nixos-configs/common-modules/nix.nix
+    ../nixos-configs/common-modules/ssh-agent.nix
+    self.nixosModules.dns-server
+    ../nixos-configs/common-modules/tailscale.nix
+    ../nixos-configs/common-modules/sops.nix
+  ];
 
-          commonDesktopModules = [
-            inputs.stylix.nixosModules.stylix
-            ../nixos-configs/common-modules/desktop-env.nix
-            ../nixos-configs/common-modules/niri.nix
-          ];
+  commonDesktopModules = [
+    inputs.stylix.nixosModules.stylix
+    ../nixos-configs/common-modules/desktop-env.nix
+    ../nixos-configs/common-modules/niri.nix
+  ];
 
-          hmCommonBaseModules = [
-            inputs.nixvim.homeModules.nixvim
-            ../home-manager/common/programs/nixvim.nix
-          ];
+  hmCommonBaseModules = [
+    inputs.nixvim.homeModules.nixvim
+    ../home-manager/common/programs/nixvim.nix
+  ];
 
-          hmCommonDesktopModules = [
-            ../home-manager/common/programs/niri.nix
-            ../home-manager/common/programs/foot.nix
-            ../home-manager/common/programs/mpv.nix
-          ];
+  hmCommonDesktopModules = [
+    ../home-manager/common/programs/niri.nix
+    ../home-manager/common/programs/foot.nix
+    ../home-manager/common/programs/mpv.nix
+  ];
 
-          mkNixos =
-            { name
-            , user ? "anthony"
-            , home-manager-directory
-            , extraModules ? [ ]
-            , desktop ? false
-            , system ? "x86_64-linux"
-            }:
-            lib.nixosSystem {
-              inherit system;
-              specialArgs = {
-                inherit inputs self;
-              };
+  mkNixos =
+    { name
+    , user ? "anthony"
+    , home-manager-directory
+    , extraModules ? [ ]
+    , desktop ? false
+    , system ? "x86_64-linux"
+    }:
+    lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit inputs self;
+      };
 
-              modules =
-                commonBaseModules
-                ++ lib.optionals desktop commonDesktopModules
-                ++ [
-                  ../nixos-configs/${name}/configuration.nix
+      modules =
+        commonBaseModules
+        ++ lib.optionals desktop commonDesktopModules
+        ++ [
+          ../nixos-configs/${name}/configuration.nix
 
-                  {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.backupFileExtension = "";
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "";
 
-                    home-manager.sharedModules =
-                      hmCommonBaseModules
-                      ++ lib.optionals desktop hmCommonDesktopModules;
+            home-manager.sharedModules =
+              hmCommonBaseModules
+              ++ lib.optionals desktop hmCommonDesktopModules;
 
-                    home-manager.extraSpecialArgs = {
-                      inherit inputs self;
-                    };
-
-                    home-manager.users.${user} =
-                      import ../home-manager/${home-manager-directory}/home.nix;
-
-                    nix.settings.trusted-users = [ "root" user ];
-                  }
-                ]
-                ++ extraModules;
+            home-manager.extraSpecialArgs = {
+              inherit inputs self;
             };
 
-          mkNixosHost = args: mkNixos (args // { desktop = true; });
-          mkNixosHeadless = args: mkNixos (args // { desktop = false; });
+            home-manager.users.${user} =
+              import ../home-manager/${home-manager-directory}/home.nix;
 
-          mkHMOnly =
-            name:
-            inputs.home-manager.lib.homeManagerConfiguration {
-              pkgs = pkgsFor system;
+            nix.settings.trusted-users = [ "root" user ];
+          }
+        ]
+        ++ extraModules;
+    };
 
-              extraSpecialArgs = {
-                inherit inputs self;
-              };
+  mkNixosHost = args: mkNixos (args // { desktop = true; });
+  mkNixosHeadless = args: mkNixos (args // { desktop = false; });
 
-              modules = [
-                ../home-manager/${name}/home.nix
-                inputs.nixvim.homeModules.nixvim
-                ../home-manager/common/programs/nixvim.nix
-              ];
-            };
-        in
-        {
-  systems = [system];
-          flake.nixosConfigurations = {
-            zeno = mkNixosHost {
-              name = "zeno";
-              home-manager-directory = "anthony";
-            };
+  mkHMOnly =
+    name:
+    inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = pkgsFor system;
 
-            aurele = mkNixosHost {
-              name = "aurele";
-              home-manager-directory = "aurele";
-            };
+      extraSpecialArgs = {
+        inherit inputs self;
+      };
 
-            mark = mkNixosHeadless {
-              name = "mark";
-              home-manager-directory = "mark";
-              extraModules = [ inputs.disko.nixosModules.disko ];
-            };
-          };
+      modules = [
+        ../home-manager/${name}/home.nix
+        inputs.nixvim.homeModules.nixvim
+        ../home-manager/common/programs/nixvim.nix
+      ];
+    };
+in
+{
+  systems = [ system ];
+  flake.nixosConfigurations = {
+    zeno = mkNixosHost {
+      name = "zeno";
+      home-manager-directory = "anthony";
+    };
 
-          flake.homeConfigurations = {
-            revan = mkHMOnly "revan";
-          };
-        }
+    aurele = mkNixosHost {
+      name = "aurele";
+      home-manager-directory = "aurele";
+    };
+
+    mark = mkNixosHeadless {
+      name = "mark";
+      home-manager-directory = "mark";
+      extraModules = [ inputs.disko.nixosModules.disko ];
+    };
+  };
+
+  flake.homeConfigurations = {
+    revan = mkHMOnly "revan";
+  };
+}
 
