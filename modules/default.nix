@@ -10,9 +10,7 @@ let
   ];
 
   commonDesktopModules = [
-    inputs.stylix.nixosModules.stylix
-    ../nixos-configs/common-modules/desktop-env.nix
-    ../nixos-configs/common-modules/niri.nix
+    self.nixosModules.base-desktop
   ];
 
   hmCommonBaseModules = [

@@ -13,4 +13,15 @@
     inputs.sops-nix.nixosModules.sops
       ];
   };
+
+  flake.nixosModules.base-desktop = {
+    imports = (with inputs.self.nixosModules; [
+      display-manager
+      x-server
+      niri
+    ])++ [
+    inputs.stylix.nixosModules.stylix
+      ];
+
+  };
 }
