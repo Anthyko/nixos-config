@@ -14,8 +14,7 @@ let
   ];
 
   hmCommonBaseModules = [
-    inputs.nixvim.homeModules.nixvim
-    ../home-manager/common/programs/nixvim.nix
+    self.homeModules.base
   ];
 
   hmCommonDesktopModules = [
