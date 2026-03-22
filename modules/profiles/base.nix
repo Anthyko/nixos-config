@@ -1,5 +1,9 @@
 { inputs, ... }: {
 
+  imports = [
+    inputs.home-manager.flakeModules.home-manager
+  ];
+
   flake.nixosModules.base = {
     imports = (with inputs.self.nixosModules; [
       dns-server
@@ -24,9 +28,14 @@
     ];
 
   };
-  
+ 
+
+  flake.homeModules.base = { inputs,...}:{
+
   imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
+    inputs.nixvim.homeModules.nixvim
+    ../../home-manager/common/programs/nixvim.nix
+    ];
+  };
 
 }
