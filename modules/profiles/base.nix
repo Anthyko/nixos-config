@@ -28,14 +28,23 @@
     ];
 
   };
- 
 
-  flake.homeModules.base = { inputs,...}:{
 
-  imports = [
-    inputs.nixvim.homeModules.nixvim
-    ../../home-manager/common/programs/nixvim.nix
+  flake.homeModules.base = { inputs, ... }: {
+
+    imports = [
+      inputs.nixvim.homeModules.nixvim
+      ../../home-manager/common/programs/nixvim.nix
     ];
   };
+
+  flake.homeModules.base-desktop = { inputs, ... }: {
+
+    imports = [
+      inputs.self.homeModules.niri
+      inputs.self.homeModules.terminal
+    ];
+  };
+
 
 }
