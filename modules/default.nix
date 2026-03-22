@@ -18,8 +18,7 @@ let
   ];
 
   hmCommonDesktopModules = [
-    ../home-manager/common/programs/niri.nix
-    ../home-manager/common/programs/foot.nix
+    self.homeModules.base-desktop
     ../home-manager/common/programs/mpv.nix
   ];
 
