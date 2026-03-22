@@ -3,17 +3,17 @@
 , ...
 }:
 {
- flake.homeModules.multimedia-player = { pkgs, ... }: {
-  programs.mpv = {
-    enable = true;
+  flake.homeModules.multimedia-player = { pkgs, ... }: {
+    programs.mpv = {
+      enable = true;
 
-    package = pkgs.mpv.override {
-      scripts = with pkgs.mpvScripts; [ uosc sponsorblock ];
+      package = pkgs.mpv.override {
+        scripts = with pkgs.mpvScripts; [ uosc sponsorblock ];
+      };
+      config = {
+        vo = "gpu";
+        "gpu-api" = "opengl";
+      };
     };
-    config = {
-      vo = "gpu";
-      "gpu-api" = "opengl";
-    };
-  };
   };
 }
