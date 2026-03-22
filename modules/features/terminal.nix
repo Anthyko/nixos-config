@@ -3,9 +3,6 @@
 , ...
 }:
 {
-  imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
   flake.homeModules.terminal = {
 
     stylix.targets.foot.enable = true;

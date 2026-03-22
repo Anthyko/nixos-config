@@ -86,10 +86,10 @@ in
 {
   systems = [ system ];
   flake.nixosConfigurations = {
-    zeno = mkNixosHost {
-      name = "zeno";
-      home-manager-directory = "anthony";
-    };
+    # zeno = mkNixosHost {
+    #   name = "zeno";
+    #   home-manager-directory = "anthony";
+    # };
 
     aurele = mkNixosHost {
       name = "aurele";

@@ -1,12 +1,10 @@
 { inputs
+, self
 , lib
 , ...
 }:
 {
 
-  imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
 
   flake.nixosModules.niri = { inputs, pkgs, ... }: {
     security.polkit.enable = true; # polkit
@@ -26,8 +24,8 @@
   flake.homeModules.niri = { inputs, pkgs, ... }: {
 
     imports = [
-      inputs.self.homeModules.waybar
-      inputs.self.homeModules.terminal
+      self.homeModules.waybar
+      self.homeModules.terminal
     ];
 
     programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)

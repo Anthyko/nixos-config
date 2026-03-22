@@ -1,13 +1,7 @@
-{ inputs
-, lib
+{ pkgs
 , ...
 }:
 {
-  imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
-
-
   flake.homeModules.waybar = { pkgs, ... }: {
     programs.waybar = {
       enable = true;
