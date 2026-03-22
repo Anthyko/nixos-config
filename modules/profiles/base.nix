@@ -1,8 +1,4 @@
-{ inputs, ... }: {
-
-  imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
+{ inputs, self, ... }: {
 
   flake.nixosModules.base = {
     imports = (with inputs.self.nixosModules; [
@@ -30,10 +26,9 @@
   };
 
 
-  flake.homeModules.base = { inputs, ... }: {
+  flake.homeModules.base = { inputs, pkgs, ... }: {
 
     imports = [
-      inputs.nixvim.homeModules.nixvim
       ../../home-manager/common/programs/nixvim.nix
     ];
   };
@@ -41,8 +36,8 @@
   flake.homeModules.base-desktop = { inputs, ... }: {
 
     imports = [
-      inputs.self.homeModules.niri
-      inputs.self.homeModules.terminal
+      self.homeModules.niri
+      self.homeModules.terminal
     ];
   };
 
