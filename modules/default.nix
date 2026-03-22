@@ -15,7 +15,7 @@ let
 
   hmCommonBaseModules = [
     self.homeModules.base
-          inputs.nixvim.homeModules.nixvim
+    inputs.nixvim.homeModules.nixvim
   ];
 
   hmCommonDesktopModules = [
