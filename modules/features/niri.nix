@@ -8,7 +8,7 @@
     inputs.home-manager.flakeModules.home-manager
   ];
 
-  flake.nixosModules.niri = { inputs,pkgs, ... }: {
+  flake.nixosModules.niri = { inputs, pkgs, ... }: {
     security.polkit.enable = true; # polkit
     services.gnome.gnome-keyring.enable = true; # secret service
     programs.niri.enable = true;
@@ -23,7 +23,7 @@
     };
   };
 
-  flake.homeModules.niri = { inputs, pkgs,... }:{
+  flake.homeModules.niri = { inputs, pkgs, ... }: {
 
     imports = [
       inputs.self.homeModules.waybar
