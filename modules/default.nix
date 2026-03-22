@@ -1,71 +1,8 @@
 { inputs, self, ... }:
 let
   system = "x86_64-linux";
-  lib = inputs.nixpkgs.lib;
 
   pkgsFor = system: import inputs.nixpkgs { inherit system; };
-
-  commonBaseModules = [
-    self.nixosModules.base
-  ];
-
-  commonDesktopModules = [
-    self.nixosModules.base-desktop
-  ];
-
-  hmCommonBaseModules = [
-    self.homeModules.base
-    inputs.nixvim.homeModules.nixvim
-  ];
-
-  hmCommonDesktopModules = [
-    self.homeModules.base-desktop
-    ../home-manager/common/programs/mpv.nix
-  ];
-
-  mkNixos =
-    { name
-    , user ? "anthony"
-    , home-manager-directory
-    , extraModules ? [ ]
-    , desktop ? false
-    , system ? "x86_64-linux"
-    }:
-    lib.nixosSystem {
-      inherit system;
-      specialArgs = {
-        inherit inputs self;
-      };
-
-      modules =
-        commonBaseModules
-        ++ lib.optionals desktop commonDesktopModules
-        ++ [
-          ../nixos-configs/${name}/configuration.nix
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "";
-
-            home-manager.sharedModules =
-              hmCommonBaseModules
-              ++ lib.optionals desktop hmCommonDesktopModules;
-
-            home-manager.extraSpecialArgs = {
-              inherit inputs self;
-            };
-
-            home-manager.users.${user} =
-              import ../home-manager/${home-manager-directory}/home.nix;
-
-            nix.settings.trusted-users = [ "root" user ];
-          }
-        ]
-        ++ extraModules;
-    };
-
-  mkNixosHost = args: mkNixos (args // { desktop = true; });
 
   mkHMOnly =
     name:
@@ -85,13 +22,6 @@ let
 in
 {
   systems = [ system ];
-  flake.nixosConfigurations = {
-    aurele = mkNixosHost {
-      name = "aurele";
-      home-manager-directory = "aurele";
-    };
-
-  };
 
   flake.homeConfigurations = {
     revan = mkHMOnly "revan";
