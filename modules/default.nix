@@ -10,7 +10,6 @@ let
     inputs.sops-nix.nixosModules.sops
 
     self.nixosModules.base
-    ../nixos-configs/common-modules/sops.nix
   ];
 
   commonDesktopModules = [

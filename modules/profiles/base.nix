@@ -7,6 +7,7 @@
       nix-config
       file-sync
       tailscale
+      secrets
     ];
   };
 }
