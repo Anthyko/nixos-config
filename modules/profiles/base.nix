@@ -6,6 +6,7 @@
       ntp
       nix-config
       file-sync
+      tailscale
     ];
   };
 }
