@@ -22,8 +22,10 @@
   };
   flake.nixosModules.zeno-module = {pkgs,...}: {
     imports = [
-      ./../../../nixos-configs/zeno/configuration.nix
-      
+      ./_modules/audio.nix
+      ./_modules/steam.nix
+      ./_modules/nvidia.nix
+      ../../../nixos-configs/zeno/hardware-configuration.nix 
     ];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -33,7 +35,12 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   hardware.keyboard.qmk.enable = true;
   networking.networkmanager.enable = true;
-
+#   Disable power saving for the snd_hda_intel driver.
+  # Prevents audio clicks, pops, and crackling (underruns) during gaming or when audio resumes.
+  # Recommended for gaming and real-time audio usage with PipeWire.
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel power_save=0
+  '';
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
