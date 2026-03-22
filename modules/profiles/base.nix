@@ -5,6 +5,7 @@
       dns-server
       ntp
       nix-config
+      file-sync
     ];
   };
 }

@@ -9,9 +9,6 @@ let
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
 
-    ../nixos-configs/common-modules/syncthing.nix
-    ../nixos-configs/common-modules/nix.nix
-    ../nixos-configs/common-modules/ssh-agent.nix
     self.nixosModules.base
     ../nixos-configs/common-modules/tailscale.nix
     ../nixos-configs/common-modules/sops.nix
