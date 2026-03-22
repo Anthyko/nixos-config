@@ -66,7 +66,6 @@ let
     };
 
   mkNixosHost = args: mkNixos (args // { desktop = true; });
-  mkNixosHeadless = args: mkNixos (args // { desktop = false; });
 
   mkHMOnly =
     name:
@@ -87,11 +86,6 @@ in
 {
   systems = [ system ];
   flake.nixosConfigurations = {
-    # zeno = mkNixosHost {
-    #   name = "zeno";
-    #   home-manager-directory = "anthony";
-    # };
-
     aurele = mkNixosHost {
       name = "aurele";
       home-manager-directory = "aurele";
