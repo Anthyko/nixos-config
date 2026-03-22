@@ -21,6 +21,10 @@
       options = "--delete-older-than 15d";
     };
     nix.optimise.dates = [ "12:00" ];
+        nix.settings.trusted-users = [
+          "root"
+          "anthony"
+        ];
   };
 }
 
