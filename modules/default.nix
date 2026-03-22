@@ -6,9 +6,6 @@ let
   pkgsFor = system: import inputs.nixpkgs { inherit system; };
 
   commonBaseModules = [
-    inputs.home-manager.nixosModules.home-manager
-    inputs.sops-nix.nixosModules.sops
-
     self.nixosModules.base
   ];
 
