@@ -10,7 +10,7 @@ in
 {
 
   sops.secrets."searx/env" = {
-    sopsFile = ../../../secrets/searx.env;
+    sopsFile = ../../../../secrets/searx.env;
     format = "dotenv";
     owner = "searx";
     group = "searx";

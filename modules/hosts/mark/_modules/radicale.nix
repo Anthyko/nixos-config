@@ -3,7 +3,7 @@
 , ...
 }: {
   sops.secrets."radicale" = {
-    sopsFile = ../../../secrets/radicale.yaml;
+    sopsFile = ../../../../secrets/radicale.yaml;
     format = "yaml";
     owner = "radicale";
     group = "radicale";

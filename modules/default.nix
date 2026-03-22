@@ -97,15 +97,9 @@ in
       home-manager-directory = "aurele";
     };
 
-    mark = mkNixosHeadless {
-      name = "mark";
-      home-manager-directory = "mark";
-      extraModules = [ inputs.disko.nixosModules.disko ];
-    };
   };
 
   flake.homeConfigurations = {
     revan = mkHMOnly "revan";
   };
 }
-
