@@ -45,6 +45,7 @@
       ./_modules/radicale.nix
       ./_modules/nginx.nix
       ./_modules/search-engine.nix
+      ./_modules/music-server.nix
       ./../../../nixos-configs/mark/disk-config.nix
     ];
 
