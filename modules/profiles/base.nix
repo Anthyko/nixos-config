@@ -26,6 +26,16 @@
   };
 
 
+  flake.nixosModules.base-desktop-gnome = {
+    imports = (with inputs.self.nixosModules; [
+      x-server
+      gnome
+    ]) ++ [
+      inputs.stylix.nixosModules.stylix
+    ];
+
+  };
+
   flake.homeModules.base = { inputs, pkgs, ... }: {
 
     imports = [

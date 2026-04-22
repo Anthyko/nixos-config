@@ -6,7 +6,7 @@
     };
     modules = [
       self.nixosModules.base
-      self.nixosModules.base-desktop
+      self.nixosModules.base-desktop-gnome
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.aurele-module
       {
