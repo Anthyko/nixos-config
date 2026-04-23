@@ -14,10 +14,14 @@ let
     nrs = "nh os switch . -- --accept-flake-config";
     g = "lazygit";
     nfmt = "nix run .#formatter.x86_64-linux -- .";
-    f = "fcd";
     blk = "lsblk -o NAME,SIZE,MODEL,MOUNTPOINT";
     lsprs = "export PRS=($(gh pr list --json number -q '.[].number')) && for i in $PRS;do gh pr view $i;done";
     mprs = "for i in $PRS;do gh pr merge -d -r $i;done";
+      j = "jobs -l";
+  f = "fg";
+  b = "bg";
+  cjob = "kill -CONT %1";
+  kjob = "kill %1";
   };
 
 in
