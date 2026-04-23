@@ -12,6 +12,7 @@
         ghfbl = "gh run list --workflow flake-bump.yml";
         ghb = "gh workflow run Build-configs";
         ghbl = "gh run list --workflow build.yml";
+        nixos-repo ="xdg-open https://github.com/Anthyko/nixos-config";
       };
     })
   ];
