@@ -4,7 +4,7 @@ pkgs: with pkgs; [
   gitflow
   nh
   discord
-  protonvpn-gui
+  proton-vpn
   cryptomator
   lazygit
   tldr
