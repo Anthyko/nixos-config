@@ -1,21 +1,10 @@
-{ username ? "anthony"
-, extraAliases ? { }
-,
-}:
-
 { config
 , lib
 , pkgs
 , ...
 }:
-
-let
-  commonAliases = import ./aliases.nix {
-    inherit username;
-    extra = extraAliases;
-  };
-in
 {
+  imports = [ ./aliases.nix ];
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -38,7 +27,6 @@ in
         fi
     '';
 
-    shellAliases = commonAliases;
 
     history = {
       size = 10000;
