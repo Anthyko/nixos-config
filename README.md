@@ -50,25 +50,7 @@ features → profiles → hosts
 
 ## Project Structure
 
-```
-.
-├── flake.nix
-├── modules/
-│   ├── default.nix
-│   ├── formatter.nix
-│   ├── features/
-│   ├── profiles/
-│   └── hosts/
-│
-├── nixos-configs/
-├── home-manager/
-├── secrets/
-├── build.sh
-├── dry-run.sh
-└── flake-bump.sh
-```
-
-### targeted Structure
+### Targeted modules Structure
 
 ```
 modules/
@@ -87,11 +69,10 @@ users/
 ## Design Notes
 
 - import-tree is used only for flake modules and reusable components
-- hardware configurations are isolated in nixos-configs/
+- hardware configurations are isolated in hardware/
 - files prefixed with `_` are ignored by import-tree
 - NixOS and Home Manager modules are kept separate
 - modules/ contains reusable logic
-- nixos-configs/ contains hardware-specific files only
 - home-manager/ is being progressively migrated into modules/
 
 ---

@@ -46,7 +46,7 @@
       ./_modules/nginx.nix
       ./_modules/search-engine.nix
       ./_modules/music-server.nix
-      ./../../../nixos-configs/mark/disk-config.nix
+      ./../../../hardware/mark/disk-config.nix
     ];
 
     boot.loader.grub = {

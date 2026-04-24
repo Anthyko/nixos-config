@@ -25,7 +25,7 @@
       ./_modules/audio.nix
       ./_modules/steam.nix
       ./_modules/nvidia.nix
-      ../../../nixos-configs/zeno/hardware-configuration.nix
+      ../../../hardware/zeno/hardware-configuration.nix
     ];
     # Use the systemd-boot EFI boot loader.
     boot.loader.systemd-boot.enable = true;

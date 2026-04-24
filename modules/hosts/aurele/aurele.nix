@@ -38,7 +38,7 @@
   flake.nixosModules.aurele-module = { lib, pkgs, ... }: {
     imports = [
       ./_modules/openssh.nix
-      ../../../nixos-configs/aurele/hardware-configuration.nix
+      ../../../hardware/aurele/hardware-configuration.nix
     ];
 
     boot.loader.systemd-boot.enable = true;
