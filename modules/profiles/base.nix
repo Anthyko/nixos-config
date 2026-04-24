@@ -16,7 +16,6 @@
 
   flake.nixosModules.base-desktop = {
     imports = (with inputs.self.nixosModules; [
-      display-manager
       x-server
       niri
     ]) ++ [

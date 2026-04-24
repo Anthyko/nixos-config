@@ -203,5 +203,4 @@ home-manager switch --flake .#anthony
 # Todo
 
 - define and targeted module dir tree
-- define better desktop profiles for gnome and niri
 - for gnome desktop, select the desired pkgs only
