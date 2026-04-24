@@ -7,7 +7,7 @@
 
 
   flake.nixosModules.gnome = { inputs, pkgs, ... }: {
- services.displayManager.gdm.enable = true;
+    services.displayManager.gdm.enable = true;
     stylix = {
       enable = true;
 
@@ -15,7 +15,7 @@
       base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
 
     };
-  services.desktopManager.gnome.enable = true;
-      environment.systemPackages = [ pkgs.gnomeExtensions.appindicator ];
+    services.desktopManager.gnome.enable = true;
+    environment.systemPackages = [ pkgs.gnomeExtensions.appindicator ];
   };
 }

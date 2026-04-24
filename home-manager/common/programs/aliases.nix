@@ -2,8 +2,7 @@
 , pkgs
 , ...
 }: {
-
-
+  # Shared aliases
   home.shellAliases = {
     ll = "ls -alh";
     gs = "git status";

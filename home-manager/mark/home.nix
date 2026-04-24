@@ -12,9 +12,7 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
   imports = [
-    (import ../common/programs/zsh-base.nix {
-      extraAliases = { };
-    })
+    ../common/programs/zsh-base.nix
   ];
   home.packages = with pkgs; [
     git
