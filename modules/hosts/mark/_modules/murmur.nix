@@ -40,8 +40,10 @@ in
     openFirewall = true;
     password = "$MURMURD_PASSWORD";
 
-    sslCert = "${certDir}/fullchain.pem";
-    sslKey = "${certDir}/key.pem";
-    sslCa = "${certDir}/chain.pem";
+    tls = {
+      certPath = "${certDir}/fullchain.pem";
+      keyPath = "${certDir}/key.pem";
+      caPath = "${certDir}/chain.pem";
+    };
   };
 }
