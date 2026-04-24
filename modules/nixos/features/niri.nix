@@ -13,9 +13,9 @@
   };
   flake.nixosModules.niri = { inputs, pkgs, ... }: {
 
-    imports =[
-        self.nixosModules.display-manager
-      ];
+    imports = [
+      self.nixosModules.display-manager
+    ];
     security.polkit.enable = true; # polkit
     services.gnome.gnome-keyring.enable = true; # secret service
     programs.niri.enable = true;

@@ -68,6 +68,20 @@ features → profiles → hosts
 └── flake-bump.sh
 ```
 
+### targeted Structure
+
+```
+modules/
+├── nixos/
+│   ├── features/
+│   ├── profiles/
+├── home/
+│   ├── features/
+│   ├── profiles/
+hosts/
+users/
+```
+
 ---
 
 ## Design Notes
@@ -202,5 +216,4 @@ home-manager switch --flake .#anthony
 
 # Todo
 
-- define and targeted module dir tree
 - for gnome desktop, select the desired pkgs only

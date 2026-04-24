@@ -1,5 +1,7 @@
 { inputs, self, ... }: {
 
+  # shared modules for nixos configs
+
   flake.nixosModules.base = {
     imports = (with inputs.self.nixosModules; [
       dns-server
@@ -24,7 +26,6 @@
 
   };
 
-
   flake.nixosModules.base-desktop-gnome = {
     imports = (with inputs.self.nixosModules; [
       x-server
@@ -33,21 +34,6 @@
       inputs.stylix.nixosModules.stylix
     ];
 
-  };
-
-  flake.homeModules.base = { inputs, pkgs, ... }: {
-
-    imports = [
-      ../../home-manager/common/programs/nixvim.nix
-    ];
-  };
-
-  flake.homeModules.base-desktop = { inputs, ... }: {
-
-    imports = [
-      self.homeModules.niri
-      self.homeModules.terminal
-    ];
   };
 
 
