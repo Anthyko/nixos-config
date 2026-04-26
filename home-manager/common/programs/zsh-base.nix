@@ -25,6 +25,16 @@
        if [[ -r "$HOME/.zshrc_local" ]]; then
           source "$HOME/.zshrc_local"
         fi
+
+      nixwiki() { #search in nixos wiki
+        xdg-open "https://wiki.nixos.org/w/index.php?search=$1" >/dev/null 2>&1
+      }
+      nixo() { #search for nix options
+        xdg-open "https://search.nixos.org/options?channel=unstable&include_modular_service_options=1&include_nixos_options=1&query=$1" >/dev/null 2>&1
+      }
+      nixp() { #search for nix packages
+        xdg-open "https://search.nixos.org/packages?channel=unstable&include_modular_service_options=1&include_nixos_options=1&query=$1" >/dev/null 2>&1
+      }
     '';
 
 
