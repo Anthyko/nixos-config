@@ -52,7 +52,7 @@
         bantime = "7d";
         findtime = "2d";
         maxretry = 5;
- };
+      };
 
 
     };

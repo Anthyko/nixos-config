@@ -74,29 +74,29 @@ in
       # Outgoing mail relay through SMTP2GO.
       relayhost = [ "[mail-eu.smtp2go.com]:587" ];
       smtpd_relay_restrictions = [
-  "permit_mynetworks"
-  "reject_unauth_destination"
-];
+        "permit_mynetworks"
+        "reject_unauth_destination"
+      ];
 
-# Basic SMTP hardening.
-disable_vrfy_command = "yes";
-smtpd_helo_required = "yes";
+      # Basic SMTP hardening.
+      disable_vrfy_command = "yes";
+      smtpd_helo_required = "yes";
 
-# Basic sender/recipient checks.
-smtpd_recipient_restrictions = [
-  "permit_mynetworks"
-  "reject_unauth_destination"
-  "reject_non_fqdn_recipient"
-  "reject_unknown_recipient_domain"
-];
+      # Basic sender/recipient checks.
+      smtpd_recipient_restrictions = [
+        "permit_mynetworks"
+        "reject_unauth_destination"
+        "reject_non_fqdn_recipient"
+        "reject_unknown_recipient_domain"
+      ];
 
-smtpd_sender_restrictions = [
-  "reject_non_fqdn_sender"
-  "reject_unknown_sender_domain"
-];
+      smtpd_sender_restrictions = [
+        "reject_non_fqdn_sender"
+        "reject_unknown_sender_domain"
+      ];
       smtp_sasl_auth_enable = "yes";
-  smtp_sasl_password_maps =
-    "texthash:${config.sops.secrets."postfix/smtp2go-sasl-passwd".path}";
+      smtp_sasl_password_maps =
+        "texthash:${config.sops.secrets."postfix/smtp2go-sasl-passwd".path}";
 
       smtp_sasl_security_options = "noanonymous";
       smtp_sasl_tls_security_options = "noanonymous";
@@ -107,56 +107,56 @@ smtpd_sender_restrictions = [
       # Accept mail for this virtual domain.
       virtual_mailbox_domains = [ domain ];
       virtual_mailbox_maps =
-    [ "texthash:${config.sops.secrets."postfix/virtual-mailboxes".path}" ];
+        [ "texthash:${config.sops.secrets."postfix/virtual-mailboxes".path}" ];
 
     };
 
   };
   services.dovecot2 = {
-  enable = true; 
+    enable = true;
 
     # https://doc.dovecot.org/2.3/configuration_manual/howto/postfix_dovecot_lmtp/
     # https://doc.dovecot.org/2.3/configuration_manual/howto/postfix_and_dovecot_sasl/
-  settings = {
-    protocols = [ "imap" "lmtp" ];
+    settings = {
+      protocols = [ "imap" "lmtp" ];
 
-    # Store mail as Maildir under /var/vmail.
-    mail_location = "maildir:/var/vmail/%d/%n/Maildir";
+      # Store mail as Maildir under /var/vmail.
+      mail_location = "maildir:/var/vmail/%d/%n/Maildir";
 
-    # Use the virtual mail storage user.
-    mail_uid = "vmail";
-    mail_gid = "vmail";
+      # Use the virtual mail storage user.
+      mail_uid = "vmail";
+      mail_gid = "vmail";
 
-    # Require TLS for IMAP authentication.
-    ssl = "required";
-    ssl_cert = "</var/lib/acme/${mailHost}/fullchain.pem";
-    ssl_key = "</var/lib/acme/${mailHost}/key.pem";
+      # Require TLS for IMAP authentication.
+      ssl = "required";
+      ssl_cert = "</var/lib/acme/${mailHost}/fullchain.pem";
+      ssl_key = "</var/lib/acme/${mailHost}/key.pem";
       service = [
-    {
-      _section = {
-        name = "lmtp";
+        {
+          _section = {
+            name = "lmtp";
+          };
+          "unix_listener lmtp" = {
+            mode = "0660";
+            user = "postfix";
+          };
+        }
+      ];
+
+      # Virtual users from sops-managed passwd-file.
+      passdb = {
+        driver = "passwd-file";
+        args = "scheme=SHA512-CRYPT ${config.sops.secrets."dovecot/users".path}";
       };
-      "unix_listener lmtp" = {
-        mode = "0660";
-        user = "postfix";
+
+      userdb = {
+        driver = "passwd-file";
+        args = config.sops.secrets."dovecot/users".path;
       };
-    }
-  ];
 
-    # Virtual users from sops-managed passwd-file.
-    passdb = {
-      driver = "passwd-file";
-      args = "scheme=SHA512-CRYPT ${config.sops.secrets."dovecot/users".path}";
+
+      auth_mechanisms = [ "plain" "login" ];
+      disable_plaintext_auth = true;
     };
-
-    userdb = {
-      driver = "passwd-file";
-      args = config.sops.secrets."dovecot/users".path;
-    };
-
-
-    auth_mechanisms = [ "plain" "login" ];
-    disable_plaintext_auth = true;
   };
-};
 }
