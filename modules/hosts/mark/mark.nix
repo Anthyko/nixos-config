@@ -46,6 +46,7 @@
       ./_modules/nginx.nix
       ./_modules/search-engine.nix
       ./_modules/music-server.nix
+      ./_modules/mail-server.nix
       ./../../../hardware/mark/disk-config.nix
     ];
 

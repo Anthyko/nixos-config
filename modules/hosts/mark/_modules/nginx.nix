@@ -28,6 +28,7 @@
     #   locations."/" = { proxyPass = "http://127.0.0.1:3007"; };
     # };
   };
+  users.users.nginx.extraGroups = [ "acme" ];
   security.acme = {
     acceptTerms = true;
     defaults.email = "me@datantho.ovh";
