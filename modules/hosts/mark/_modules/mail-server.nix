@@ -9,7 +9,6 @@ in
 {
   networking.firewall.allowedTCPPorts = [
     25
-    143
     993
   ];
   #users.users.dovecot2.extraGroups = [ "acme" ];
@@ -61,6 +60,7 @@ in
     domain = domain;
     origin = domain;
 
+
     # Do not include domain here because we use virtual_mailbox_domains.
     destination = [
       "$myhostname"
@@ -72,8 +72,28 @@ in
 
     settings.main = {
       # Outgoing mail relay through SMTP2GO.
-      relayhost = [ "[mail-eu.smtp1go.com]:587" ];
+      relayhost = [ "[mail-eu.smtp2go.com]:587" ];
+      smtpd_relay_restrictions = [
+  "permit_mynetworks"
+  "reject_unauth_destination"
+];
 
+# Basic SMTP hardening.
+disable_vrfy_command = "yes";
+smtpd_helo_required = "yes";
+
+# Basic sender/recipient checks.
+smtpd_recipient_restrictions = [
+  "permit_mynetworks"
+  "reject_unauth_destination"
+  "reject_non_fqdn_recipient"
+  "reject_unknown_recipient_domain"
+];
+
+smtpd_sender_restrictions = [
+  "reject_non_fqdn_sender"
+  "reject_unknown_sender_domain"
+];
       smtp_sasl_auth_enable = "yes";
   smtp_sasl_password_maps =
     "texthash:${config.sops.secrets."postfix/smtp2go-sasl-passwd".path}";
