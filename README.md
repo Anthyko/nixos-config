@@ -198,3 +198,4 @@ home-manager switch --flake .#anthony
 # Todo
 
 - for gnome desktop, select the desired pkgs only
+- switch to dependabot
