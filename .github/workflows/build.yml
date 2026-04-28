@@ -30,7 +30,7 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
 
-      - uses: cachix/cachix-action@v15
+      - uses: cachix/cachix-action@v17
         with:
           name: ${{ env.CACHIX }}
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
@@ -46,7 +46,7 @@ jobs:
     outputs:
       matrix: ${{ steps.mk.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
@@ -71,11 +71,11 @@ jobs:
         with:
           witness-carnage: false
           hatchet-protocol: 'rampage' 
-      - uses: cachix/install-nix-action@v27
+      - uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
-      - uses: cachix/cachix-action@v16
+      - uses: cachix/cachix-action@v17
         with:
           name: dat-antho-${{ matrix.host }}
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
