@@ -197,4 +197,4 @@ home-manager switch --flake .#anthony
 # Todo
 
 - for gnome desktop, select the desired pkgs only
-- switch to dependabot
+- follow : https://github.com/NixOS/nixpkgs/issues/513245
