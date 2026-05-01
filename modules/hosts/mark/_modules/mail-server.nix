@@ -11,7 +11,7 @@ in
     25
     993
   ];
-  #users.users.dovecot2.extraGroups = [ "acme" ];
+  users.users.dovecot2.extraGroups = [ "acme" ];
   users.users.postfix.extraGroups = [ "acme" ];
   # Dedicated system user for virtual mail storage.
   users.groups.vmail.gid = 5000;
@@ -35,7 +35,12 @@ in
     group = "postfix";
     mode = "0440";
   };
-
+  sops.secrets."postfix/aliases" = {
+    sopsFile = ../../../../secrets/secrets.yaml;
+    owner = "postfix";
+    group = "postfix";
+    mode = "0440";
+  };
   sops.secrets."dovecot/users" = {
     sopsFile = ../../../../secrets/secrets.yaml;
     owner = "dovecot2";
@@ -93,6 +98,8 @@ in
       smtpd_sender_restrictions = [
         "reject_non_fqdn_sender"
         "reject_unknown_sender_domain"
+        "permit_sasl_authenticated"
+        "permit_mynetworks"
       ];
       smtp_sasl_auth_enable = "yes";
       smtp_sasl_password_maps =
@@ -109,6 +116,11 @@ in
       virtual_mailbox_maps =
         [ "texthash:${config.sops.secrets."postfix/virtual-mailboxes".path}" ];
 
+      virtual_alias_maps =
+        [ "texthash:${config.sops.secrets."postfix/aliases".path}" ];
+
+      smtpd_sender_login_maps =
+        [ "texthash:${config.sops.secrets."postfix/aliases".path}" ];
     };
 
   };

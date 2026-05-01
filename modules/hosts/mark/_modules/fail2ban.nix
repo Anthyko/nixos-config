@@ -53,19 +53,19 @@
         findtime = "2d";
         maxretry = 5;
       };
-       dovecot.settings = {
-    enabled = true;
-    filter = "dovecot";
-    port = "imap,imaps";
-    journalmatch = "_SYSTEMD_UNIT=dovecot.service";
-  };
+      dovecot.settings = {
+        enabled = true;
+        filter = "dovecot";
+        port = "imap,imaps";
+        journalmatch = "_SYSTEMD_UNIT=dovecot.service";
+      };
 
-  postfix.settings = {
-    enabled = true;
-    filter = "postfix";
-    port = "smtp";
-    journalmatch = "_SYSTEMD_UNIT=postfix.service";
-  };
+      postfix.settings = {
+        enabled = true;
+        filter = "postfix";
+        port = "smtp";
+        journalmatch = "_SYSTEMD_UNIT=postfix.service";
+      };
 
 
     };
