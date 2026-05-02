@@ -3,7 +3,7 @@
 , ...
 }:
 let
-  domain = "vps.datantho.ovh";
+  domain = "voice.datantho.ovh";
   certDir = config.security.acme.certs.${domain}.directory;
 in
 {
