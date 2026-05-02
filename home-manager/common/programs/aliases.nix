@@ -1,7 +1,7 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  ...
+}:
+{
   # Shared aliases
   home.shellAliases = {
     ll = "ls -alh";
@@ -11,7 +11,6 @@
     nrb = "nh os boot . -- --accept-flake-config";
     nrs = "nh os switch . -- --accept-flake-config";
     g = "lazygit";
-    nfmt = "nix run .#formatter.x86_64-linux -- .";
     blk = "lsblk -o NAME,SIZE,MODEL,MOUNTPOINT";
     lsprs = "export PRS=($(gh pr list --json number -q '.[].number')) && for i in $PRS;do gh pr view $i;done";
     mprs = "for i in $PRS;do gh pr merge -d -r $i;done";
