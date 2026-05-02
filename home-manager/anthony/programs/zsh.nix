@@ -1,7 +1,5 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  ...
 }:
 {
   imports = [ ../../common/programs/zsh-base.nix ];

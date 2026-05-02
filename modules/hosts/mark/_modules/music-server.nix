@@ -1,6 +1,5 @@
-{ config
-, lib
-, ...
+{
+  ...
 }:
 let
   domain = "music.datantho.ovh";
@@ -18,7 +17,6 @@ in
       enableACME = true;
       forceSSL = true;
 
-
       locations."/" = {
         proxyPass = "http://127.0.0.1:4533";
         proxyWebsockets = true;
@@ -26,6 +24,4 @@ in
     };
   };
 
-
 }
-

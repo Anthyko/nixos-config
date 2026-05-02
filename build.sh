@@ -61,13 +61,13 @@ build_home_manager() {
 }
 
 ##################################
-# NixOS Build 
+# NixOS Build
 ##################################
 
 build_nixos() {
  local hosts=()
-  
-  
+
+
   if [[ $# -gt 0 ]]; then
     hosts=("$@")
     echo "🎯 Using provided hosts: ${hosts[*]}"
@@ -108,7 +108,7 @@ main() {
   build_home_manager
   build_nixos aurele
   cleanup_store
-  
+
   duration=$SECONDS
   printf "✅ Build completed in %02d:%02d\n" $((duration/60)) $((duration%60))
 }

@@ -17,4 +17,3 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
       - name: Run flake check
         run: nix flake check
-

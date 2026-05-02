@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }:
 {
   hardware.graphics.enable = true; # Whether to enable hardware accelerated graphics drivers

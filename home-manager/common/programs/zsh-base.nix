@@ -1,7 +1,7 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  ...
 }:
 {
   imports = [ ./aliases.nix ];
@@ -36,7 +36,6 @@
         xdg-open "https://search.nixos.org/packages?channel=unstable&include_modular_service_options=1&include_nixos_options=1&query=$1" >/dev/null 2>&1
       }
     '';
-
 
     history = {
       size = 10000;

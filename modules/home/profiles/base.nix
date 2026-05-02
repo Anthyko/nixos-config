@@ -1,17 +1,22 @@
-{ inputs, self, ... }: {
+{ self, ... }:
+{
   #shared module for all the home configs
-  flake.homeModules.base = { inputs, pkgs, ... }: {
+  flake.homeModules.base =
+    { ... }:
+    {
 
-    imports = [
-      ../../../home-manager/common/programs/nixvim.nix
-    ];
-  };
+      imports = [
+        ../../../home-manager/common/programs/nixvim.nix
+      ];
+    };
 
-  flake.homeModules.base-desktop = { inputs, ... }: {
+  flake.homeModules.base-desktop =
+    { ... }:
+    {
 
-    imports = [
-      self.homeModules.niri
-      self.homeModules.terminal
-    ];
-  };
+      imports = [
+        self.homeModules.niri
+        self.homeModules.terminal
+      ];
+    };
 }

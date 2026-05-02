@@ -1,7 +1,7 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  ...
+}:
+{
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
@@ -33,6 +33,5 @@
     acceptTerms = true;
     defaults.email = "me@datantho.ovh";
   };
-
 
 }

@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }:
 let
   tailscale_domain = "mark.tailf9979f.ts.net";
@@ -54,7 +55,11 @@ in
 
     virtualHosts."${tailscale_domain}" = {
       listen = [
-        { addr = tailscale_ip; port = 443; ssl = true; }
+        {
+          addr = tailscale_ip;
+          port = 443;
+          ssl = true;
+        }
       ];
 
       onlySSL = true;
@@ -75,7 +80,10 @@ in
 
     wantedBy = [ "multi-user.target" ];
 
-    serviceConfig = { Type = "oneshot"; UMask = "0077"; };
+    serviceConfig = {
+      Type = "oneshot";
+      UMask = "0077";
+    };
     script = ''
       install -d -m 0750 -o nginx -g nginx ${tailscale_cert_directory}
 

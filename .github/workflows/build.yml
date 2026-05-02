@@ -70,7 +70,7 @@ jobs:
       - uses: wimpysworld/nothing-but-nix@main
         with:
           witness-carnage: false
-          hatchet-protocol: 'rampage' 
+          hatchet-protocol: 'rampage'
       - uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
@@ -83,4 +83,3 @@ jobs:
         run: |
           nix build --accept-flake-config --print-build-logs --no-link \
             .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
-

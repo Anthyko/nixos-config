@@ -1,6 +1,7 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  pkgs,
+  ...
 }:
 let
   domain = "anthonyhengy.fr";
@@ -57,9 +58,6 @@ in
   services.postfix = {
     enable = true;
 
-
-
-
     # Outgoing mail relay through SMTP2GO.
 
     settings.main = {
@@ -98,8 +96,7 @@ in
         "permit_mynetworks"
       ];
       smtp_sasl_auth_enable = "yes";
-      smtp_sasl_password_maps =
-        "texthash:${config.sops.secrets."postfix/smtp2go-sasl-passwd".path}";
+      smtp_sasl_password_maps = "texthash:${config.sops.secrets."postfix/smtp2go-sasl-passwd".path}";
 
       smtp_sasl_security_options = "noanonymous";
       smtp_sasl_tls_security_options = "noanonymous";
@@ -109,11 +106,9 @@ in
       virtual_transport = "lmtp:unix:/run/dovecot2/lmtp";
       # Accept mail for this virtual domain.
       virtual_mailbox_domains = [ domain ];
-      virtual_mailbox_maps =
-        [ "texthash:${config.sops.secrets."postfix/virtual-mailboxes".path}" ];
+      virtual_mailbox_maps = [ "texthash:${config.sops.secrets."postfix/virtual-mailboxes".path}" ];
 
-      virtual_alias_maps =
-        [ "texthash:${config.sops.secrets."postfix/aliases".path}" ];
+      virtual_alias_maps = [ "texthash:${config.sops.secrets."postfix/aliases".path}" ];
 
       smtpd_tls_security_level = "may";
       smtpd_tls_cert_file = "/var/lib/acme/${mailHost}/fullchain.pem";
@@ -127,7 +122,10 @@ in
     # https://doc.dovecot.org/2.3/configuration_manual/howto/postfix_dovecot_lmtp/
     # https://doc.dovecot.org/2.3/configuration_manual/howto/postfix_and_dovecot_sasl/
     settings = {
-      protocols = [ "imap" "lmtp" ];
+      protocols = [
+        "imap"
+        "lmtp"
+      ];
 
       # Store mail as Maildir under /var/vmail.
       mail_location = "maildir:/var/vmail/%d/%n/Maildir";
@@ -163,8 +161,10 @@ in
         args = config.sops.secrets."dovecot/users".path;
       };
 
-
-      auth_mechanisms = [ "plain" "login" ];
+      auth_mechanisms = [
+        "plain"
+        "login"
+      ];
       disable_plaintext_auth = true;
     };
   };

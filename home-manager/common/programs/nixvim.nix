@@ -1,7 +1,8 @@
-{ pkgs
-, inputs
-, ...
-}: {
+{
+  pkgs,
+  ...
+}:
+{
   imports = [
     # Plugins
     ./plugins/gitsigns.nix

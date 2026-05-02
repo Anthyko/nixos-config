@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, ...
-}: {
+{
+  config,
+  ...
+}:
+{
   sops.secrets."radicale" = {
     sopsFile = ../../../../secrets/radicale.yaml;
     format = "yaml";
@@ -28,6 +29,5 @@
 
     };
   };
-
 
 }

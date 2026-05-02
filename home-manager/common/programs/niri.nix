@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -39,7 +39,7 @@
     enable = true;
     settings = {
 
-      default-timeout = 5000; #  milliseconds
+      default-timeout = 5000; # milliseconds
     };
   };
 }

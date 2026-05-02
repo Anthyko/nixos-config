@@ -1,9 +1,10 @@
-{ config
-, pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 
-let common = import ../common/programs/common-pkgs.nix pkgs;
+let
+  common = import ../common/programs/common-pkgs.nix pkgs;
 in
 {
   home.username = "anthony";
@@ -17,10 +18,12 @@ in
   imports = [
     ../common/programs/zsh-base.nix
   ];
-  home.packages = common ++ (with pkgs; [
-    qbittorrent
-    wine
-  ]);
+  home.packages =
+    common
+    ++ (with pkgs; [
+      qbittorrent
+      wine
+    ]);
   programs.bash.enable = true;
   home.sessionVariables = {
     EDITOR = "nvim";

@@ -1,10 +1,11 @@
-{ inputs
-, lib
-, ...
+{
+  ...
 }:
 {
-  flake.nixosModules.x-server = { pkgs, ... }: {
-    services.xserver.enable = true;
+  flake.nixosModules.x-server =
+    { ... }:
+    {
+      services.xserver.enable = true;
 
-  };
+    };
 }

@@ -1,6 +1,6 @@
-{ inputs
-, lib
-, ...
+{
+  lib,
+  ...
 }:
 {
   flake.homeModules.terminal = {
@@ -22,4 +22,3 @@
     };
   };
 }
-

@@ -1,6 +1,6 @@
-{ config
-, pkgs
-, ...
+{
+  config,
+  ...
 }:
 let
   domain = "voice.datantho.ovh";
