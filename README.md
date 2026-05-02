@@ -84,6 +84,14 @@ Required key file:
 /var/lib/sops-nix/keys.txt
 ```
 
+### Edit secrets
+
+```
+export SOPS_AGE_KEY_FILE=/var/lib/sops-nix/keys.txt
+nix-shell -p sops --run "sops secrets/thesecretfile.yaml"
+
+```
+
 ---
 
 ## Prerequisites
