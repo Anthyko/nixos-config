@@ -54,9 +54,6 @@ in
     #proxyPass = "http://127.0.0.1:3000";
     #};
   };
-  security.acme.certs.${mailHost} = {
-    group = "acme";
-  };
   services.postfix = {
     enable = true;
 
@@ -98,7 +95,6 @@ in
       smtpd_sender_restrictions = [
         "reject_non_fqdn_sender"
         "reject_unknown_sender_domain"
-        "permit_sasl_authenticated"
         "permit_mynetworks"
       ];
       smtp_sasl_auth_enable = "yes";
@@ -119,8 +115,9 @@ in
       virtual_alias_maps =
         [ "texthash:${config.sops.secrets."postfix/aliases".path}" ];
 
-      smtpd_sender_login_maps =
-        [ "texthash:${config.sops.secrets."postfix/aliases".path}" ];
+      smtpd_tls_security_level = "may";
+smtpd_tls_cert_file = "/var/lib/acme/${mailHost}/fullchain.pem";
+smtpd_tls_key_file = "/var/lib/acme/${mailHost}/key.pem";
     };
 
   };
@@ -171,4 +168,12 @@ in
       disable_plaintext_auth = true;
     };
   };
+  # reload services on acme update
+  security.acme.certs.${mailHost} = {
+  group = "acme";
+  reloadServices = [
+    "postfix.service"
+    "dovecot2.service"
+  ];
+};
 }
