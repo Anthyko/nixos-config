@@ -70,16 +70,16 @@ in
         "reject_unauth_destination"
       ];
 
-    # Mail server identity.
-    hostname = mailHost;
-    domain = domain;
-    origin = domain;
-    # Do not include domain here because we use virtual_mailbox_domains.
-    mydestination = [
-      "$myhostname"
-      "localhost.$mydomain"
-      "localhost"
-    ];
+      # Mail server identity.
+      hostname = mailHost;
+      domain = domain;
+      origin = domain;
+      # Do not include domain here because we use virtual_mailbox_domains.
+      mydestination = [
+        "$myhostname"
+        "localhost.$mydomain"
+        "localhost"
+      ];
       # Basic SMTP hardening.
       disable_vrfy_command = "yes";
       smtpd_helo_required = "yes";
@@ -116,8 +116,8 @@ in
         [ "texthash:${config.sops.secrets."postfix/aliases".path}" ];
 
       smtpd_tls_security_level = "may";
-smtpd_tls_cert_file = "/var/lib/acme/${mailHost}/fullchain.pem";
-smtpd_tls_key_file = "/var/lib/acme/${mailHost}/key.pem";
+      smtpd_tls_cert_file = "/var/lib/acme/${mailHost}/fullchain.pem";
+      smtpd_tls_key_file = "/var/lib/acme/${mailHost}/key.pem";
     };
 
   };
@@ -170,10 +170,10 @@ smtpd_tls_key_file = "/var/lib/acme/${mailHost}/key.pem";
   };
   # reload services on acme update
   security.acme.certs.${mailHost} = {
-  group = "acme";
-  reloadServices = [
-    "postfix.service"
-    "dovecot2.service"
-  ];
-};
+    group = "acme";
+    reloadServices = [
+      "postfix.service"
+      "dovecot2.service"
+    ];
+  };
 }

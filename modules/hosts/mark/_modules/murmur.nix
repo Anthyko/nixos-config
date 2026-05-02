@@ -17,7 +17,7 @@ in
     certs.${domain} = {
 
       group = "certreaders";
-      reloadServices =[
+      reloadServices = [
         "murmur.services"
       ];
     };
