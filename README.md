@@ -204,5 +204,5 @@ home-manager switch --flake .#anthony
 
 # Todo
 
-- for gnome desktop, select the desired pkgs only
 - follow : https://github.com/NixOS/nixpkgs/issues/513245
+- migrate home-manager to the modules/home/
