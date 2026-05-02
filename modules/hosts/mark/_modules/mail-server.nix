@@ -57,18 +57,8 @@ in
   services.postfix = {
     enable = true;
 
-    # Mail server identity.
-    hostname = mailHost;
-    domain = domain;
-    origin = domain;
 
 
-    # Do not include domain here because we use virtual_mailbox_domains.
-    destination = [
-      "$myhostname"
-      "localhost.$mydomain"
-      "localhost"
-    ];
 
     # Outgoing mail relay through SMTP2GO.
 
@@ -80,6 +70,16 @@ in
         "reject_unauth_destination"
       ];
 
+    # Mail server identity.
+    hostname = mailHost;
+    domain = domain;
+    origin = domain;
+    # Do not include domain here because we use virtual_mailbox_domains.
+    mydestination = [
+      "$myhostname"
+      "localhost.$mydomain"
+      "localhost"
+    ];
       # Basic SMTP hardening.
       disable_vrfy_command = "yes";
       smtpd_helo_required = "yes";
