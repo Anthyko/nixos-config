@@ -15,7 +15,11 @@ in
   users.users.murmur.extraGroups = [ "certreaders" ];
   security.acme = {
     certs.${domain} = {
+
       group = "certreaders";
+      reloadServices =[
+        "murmur.services"
+      ];
     };
   };
 
