@@ -1,6 +1,4 @@
-{
-  ...
-}:
+_:
 let
   domain = "music.datantho.ovh";
 in

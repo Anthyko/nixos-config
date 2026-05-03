@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{
+_: {
   # Shared aliases
   home.shellAliases = {
     ll = "ls -alh";

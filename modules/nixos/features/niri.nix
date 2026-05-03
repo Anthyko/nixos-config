@@ -4,13 +4,11 @@
 }:
 {
 
-  flake.nixosModules.display-manager =
-    { ... }:
-    {
+  flake.nixosModules.display-manager = _: {
 
-      services.displayManager.sddm.enable = true;
-      services.displayManager.sddm.wayland.enable = false;
-    };
+    services.displayManager.sddm.enable = true;
+    services.displayManager.sddm.wayland.enable = false;
+  };
   flake.nixosModules.niri =
     { pkgs, ... }:
     {

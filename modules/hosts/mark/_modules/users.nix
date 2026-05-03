@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{
+_: {
   users.users.anthony = {
     isNormalUser = true;
     home = "/home/anthony";

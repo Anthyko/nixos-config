@@ -1,7 +1,4 @@
-{
-  ...
-}:
-{
+_: {
   flake.homeModules.multimedia-player =
     { pkgs, ... }:
     {

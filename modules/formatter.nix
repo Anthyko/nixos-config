@@ -9,7 +9,7 @@
       pre-commit.settings.hooks = {
         nixfmt.enable = true;
         deadnix.enable = true;
-        #statix.enable = true; enable this later
+        # statix.enable = true;
 
         check-merge-conflicts.enable = true;
         detect-private-keys.enable = true;

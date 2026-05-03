@@ -1,11 +1,6 @@
-{
-  ...
-}:
-{
-  flake.nixosModules.ssh-agent =
-    { ... }:
-    {
-      # Whether to start the OpenSSH agent when you log in
-      programs.ssh.startAgent = true;
-    };
+_: {
+  flake.nixosModules.ssh-agent = _: {
+    # Whether to start the OpenSSH agent when you log in
+    programs.ssh.startAgent = true;
+  };
 }

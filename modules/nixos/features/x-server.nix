@@ -1,11 +1,6 @@
-{
-  ...
-}:
-{
-  flake.nixosModules.x-server =
-    { ... }:
-    {
-      services.xserver.enable = true;
+_: {
+  flake.nixosModules.x-server = _: {
+    services.xserver.enable = true;
 
-    };
+  };
 }

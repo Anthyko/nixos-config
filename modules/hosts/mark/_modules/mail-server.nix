@@ -70,7 +70,7 @@ in
 
       # Mail server identity.
       hostname = mailHost;
-      domain = domain;
+      inherit domain;
       origin = domain;
       # Do not include domain here because we use virtual_mailbox_domains.
       mydestination = [
