@@ -27,6 +27,7 @@ in
       libreoffice-still
       gh
       qFlipper
+      anki # to not forget stuff
       protonup-qt
       # -- useful to plug phone and get the photos
       ifuse
