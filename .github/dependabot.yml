@@ -9,4 +9,4 @@ updates:
     directory: "/"
     schedule:
       interval: "cron"
-      cronjob: "17 15 * * 3"
+      cronjob: "9 15 * * 3"
