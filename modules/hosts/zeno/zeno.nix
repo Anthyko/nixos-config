@@ -9,14 +9,13 @@
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.zeno-module
       {
-        home-manager.sharedModules = [
-          inputs.nixvim.homeModules.nixvim
-          self.homeModules.base
-          self.homeModules.base-desktop
-          self.homeModules.multimedia-player
-        ];
         home-manager.useGlobalPkgs = true;
-        home-manager.users.anthony = import ../../../home-manager/anthony/home.nix;
+        home-manager.users.anthony = {
+          imports = [
+            inputs.nixvim.homeModules.nixvim
+            self.homeModules.anthony-module
+          ];
+        };
       }
 
     ];
