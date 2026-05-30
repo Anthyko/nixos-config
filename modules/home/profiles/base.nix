@@ -4,7 +4,13 @@
   flake.homeModules.base =
     { ... }:
     {
+      nix.settings.trusted-users = [
+        "root"
+        "anthony"
+      ];
 
+      home-manager.useUserPackages = true;
+      home-manager.backupFileExtension = "";
       imports = [
         ../../../home-manager/common/programs/nixvim.nix
         self.homeModules.cli-apps
