@@ -14,22 +14,12 @@
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.backupFileExtension = "";
-
-        home-manager.sharedModules = [
-          inputs.nixvim.homeModules.nixvim
-          self.homeModules.base-desktop
-        ];
-
-        home-manager.extraSpecialArgs = {
-          inherit inputs self;
+        home-manager.users.anthony = {
+          imports = [
+            inputs.nixvim.homeModules.nixvim
+            self.homeModules.aurele-module
+          ];
         };
-
-        home-manager.users.anthony = import ../../../home-manager/aurele/home.nix;
-
-        nix.settings.trusted-users = [
-          "root"
-          "anthony"
-        ];
       }
     ];
   };
