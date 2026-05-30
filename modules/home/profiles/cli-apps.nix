@@ -19,6 +19,7 @@
           name = "anthony";
         };
       };
+      services.ssh-agent.enable = false;
       home.packages = with pkgs; [
         fzf
         gh
