@@ -15,8 +15,10 @@
     {
 
       imports = [
+        self.homeModules.base
         self.homeModules.niri
         self.homeModules.terminal
+        self.homeModules.multimedia-player
       ];
     };
 }
