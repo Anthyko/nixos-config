@@ -10,6 +10,8 @@
       self.nixosModules.zeno-module
       {
         home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "";
         home-manager.users.anthony = {
           imports = [
             inputs.nixvim.homeModules.nixvim

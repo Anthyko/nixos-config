@@ -11,26 +11,15 @@
       inputs.disko.nixosModules.disko
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.mark-module
+
       {
         home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "";
-
-        home-manager.sharedModules = [
-          self.homeModules.base
-          inputs.nixvim.homeModules.nixvim
-        ];
-
-        home-manager.extraSpecialArgs = {
-          inherit inputs self;
+        home-manager.users.anthony = {
+          imports = [
+            inputs.nixvim.homeModules.nixvim
+            self.homeModules.mark-module
+          ];
         };
-
-        home-manager.users.anthony = import ../../../home-manager/mark/home.nix;
-
-        nix.settings.trusted-users = [
-          "root"
-          "anthony"
-        ];
       }
     ];
   };

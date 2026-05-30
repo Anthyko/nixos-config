@@ -5,6 +5,11 @@
     homeConfigurations."revan" = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
       modules = [
+        {
+
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "";
+        }
         self.homeModules.revan-module
       ];
     };
