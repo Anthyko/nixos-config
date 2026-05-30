@@ -44,6 +44,7 @@ features → profiles → hosts
 - features: small reusable modules (ntp, tailscale, niri, etc.)
 - profiles: reusable bundles (base, desktop, server)
 - hosts: final machine configurations
+- users: home-manager configurations
 
 ---
 
@@ -72,7 +73,6 @@ users/
 - files prefixed with `_` are ignored by import-tree
 - NixOS and Home Manager modules are kept separate
 - modules/ contains reusable logic
-- home-manager/ is being progressively migrated into modules/
 
 ---
 
@@ -205,4 +205,3 @@ home-manager switch --flake .#anthony
 # Todo
 
 - follow : https://github.com/NixOS/nixpkgs/issues/513245
-- migrate home-manager to the modules/home/
