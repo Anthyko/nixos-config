@@ -16,10 +16,8 @@
         home-manager.backupFileExtension = "";
 
         home-manager.sharedModules = [
-          self.homeModules.base
           inputs.nixvim.homeModules.nixvim
           self.homeModules.base-desktop
-          self.homeModules.multimedia-player
         ];
 
         home-manager.extraSpecialArgs = {
