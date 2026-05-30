@@ -7,11 +7,12 @@
 
       imports = [
         ../../../home-manager/common/programs/nixvim.nix
+        self.homeModules.cli-apps
       ];
     };
 
   flake.homeModules.base-desktop =
-    { ... }:
+    { pkgs, ... }:
     {
 
       imports = [
@@ -19,6 +20,19 @@
         self.homeModules.niri
         self.homeModules.terminal
         self.homeModules.multimedia-player
+      ];
+
+      home.packages = with pkgs; [
+        thunderbird
+        signal-desktop
+        mumble
+        discord
+        filezilla
+        cryptomator
+        anki
+        vial # keyboard config
+        proton-vpn
+        obsidian
       ];
     };
 }
