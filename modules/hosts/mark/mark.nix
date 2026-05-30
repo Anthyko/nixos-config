@@ -16,7 +16,6 @@
         home-manager.useGlobalPkgs = true;
         home-manager.users.anthony = {
           imports = [
-            inputs.nixvim.homeModules.nixvim
             self.homeModules.mark-module
           ];
         };
