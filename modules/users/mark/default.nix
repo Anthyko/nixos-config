@@ -7,7 +7,6 @@
     {
       imports = [
         self.homeModules.base
-        # ../../../home-manager/mark/home.nix
       ];
 
       home.username = "anthony";

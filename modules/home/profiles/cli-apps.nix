@@ -6,6 +6,7 @@
     {
       imports = [
         self.homeModules.shell
+        self.homeModules.text-editor
       ];
       programs.nh = {
         enable = true;

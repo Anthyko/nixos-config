@@ -14,8 +14,6 @@
       {
         imports = [
           self.homeModules.cli-apps
-          inputs.nixvim.homeModules.nixvim
-          ../../../home-manager/common/programs/nixvim.nix
         ];
 
         # Home Manager needs a bit of information about you and the paths it should

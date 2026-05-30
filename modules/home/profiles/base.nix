@@ -10,7 +10,6 @@
       ];
 
       imports = [
-        ../../../home-manager/common/programs/nixvim.nix
         self.homeModules.cli-apps
       ];
     };

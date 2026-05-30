@@ -4,7 +4,6 @@
   flake.nixosConfigurations.zeno = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      self.nixosModules.base
       self.nixosModules.base-desktop
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.zeno-module
@@ -14,7 +13,6 @@
         home-manager.backupFileExtension = "";
         home-manager.users.anthony = {
           imports = [
-            inputs.nixvim.homeModules.nixvim
             self.homeModules.anthony-module
           ];
         };

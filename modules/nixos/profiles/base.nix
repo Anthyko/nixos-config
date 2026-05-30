@@ -22,6 +22,7 @@
   flake.nixosModules.base-desktop = {
     imports =
       (with inputs.self.nixosModules; [
+        base
         x-server
         niri
       ])
@@ -36,6 +37,7 @@
       (with inputs.self.nixosModules; [
         x-server
         gnome
+        base
       ])
       ++ [
         inputs.stylix.nixosModules.stylix

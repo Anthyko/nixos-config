@@ -6,7 +6,6 @@
       inherit inputs self;
     };
     modules = [
-      self.nixosModules.base
       self.nixosModules.base-desktop-gnome
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.aurele-module
@@ -16,7 +15,6 @@
         home-manager.backupFileExtension = "";
         home-manager.users.anthony = {
           imports = [
-            inputs.nixvim.homeModules.nixvim
             self.homeModules.aurele-module
           ];
         };
