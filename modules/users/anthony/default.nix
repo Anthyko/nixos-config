@@ -4,7 +4,6 @@
     { pkgs, ... }:
     {
       imports = [
-        # ../anthony/../../../home-manager/anthony/home.nix
         self.homeModules.base-desktop
         self.homeModules.python
         self.homeModules.newsboat
