@@ -38,7 +38,7 @@ The configuration follows a **feature → profile → host/user** architecture.
 ## Architecture
 
 ```
-features → profiles → hosts
+features → profiles → hosts / users
 ```
 
 - features: small reusable modules (ntp, tailscale, niri, etc.)
