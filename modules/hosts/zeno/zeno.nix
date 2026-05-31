@@ -1,25 +1,23 @@
-{ inputs, self, ... }:
+{
+  self,
+  mkNixos,
+  ...
+}:
 {
 
-  flake.nixosConfigurations.zeno = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      self.nixosModules.base-desktop
-      inputs.home-manager.nixosModules.home-manager
-      self.nixosModules.zeno-module
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "";
-        home-manager.users.anthony = {
-          imports = [
-            self.homeModules.anthony-module
-          ];
-        };
-      }
+  flake.nixosConfigurations.zeno = mkNixos [
 
-    ];
-  };
+    self.nixosModules.base-desktop
+    self.nixosModules.zeno-module
+    {
+      home-manager.users.anthony = {
+        imports = [
+          self.homeModules.anthony-module
+        ];
+      };
+    }
+  ];
+
   flake.nixosModules.zeno-module =
     { pkgs, ... }:
     {
@@ -38,6 +36,7 @@
       hardware.keyboard.qmk.enable = true;
       networking = {
         hostName = "zeno";
+        networkmanager.enable = true;
       };
       #   Disable power saving for the snd_hda_intel driver.
       # Prevents audio clicks, pops, and crackling (underruns) during gaming or when audio resumes.
