@@ -10,7 +10,7 @@ This repository contains a modular NixOS and Home Manager setup built with:
 - import-tree
 - sops-nix
 
-The configuration follows a **feature → profile → host** architecture.
+The configuration follows a **feature → profile → host/user** architecture.
 
 ---
 
