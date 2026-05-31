@@ -10,9 +10,16 @@ in
 
   # Create a new group for nginx and murmur
   # This group is set has owner of the cert
-  users.groups.certreaders = { };
-  users.users.nginx.extraGroups = [ "certreaders" ];
-  users.users.murmur.extraGroups = [ "certreaders" ];
+  users = {
+
+    groups.certreaders = { };
+    users = {
+
+      users.nginx.extraGroups = [ "certreaders" ];
+      users.murmur.extraGroups = [ "certreaders" ];
+    };
+  };
+
   security.acme = {
     certs.${domain} = {
 
@@ -22,7 +29,6 @@ in
       ];
     };
   };
-
   # The cert is generated via http challenge, this is more simple this way
   services.nginx.virtualHosts.${domain} = {
     enableACME = true;

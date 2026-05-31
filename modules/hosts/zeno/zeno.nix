@@ -36,7 +36,10 @@
       # Use latest kernel
       boot.kernelPackages = pkgs.linuxPackages_zen;
       hardware.keyboard.qmk.enable = true;
-      networking.networkmanager.enable = true;
+      networking = {
+        enable = true;
+        hostName = "zeno";
+      };
       #   Disable power saving for the snd_hda_intel driver.
       # Prevents audio clicks, pops, and crackling (underruns) during gaming or when audio resumes.
       # Recommended for gaming and real-time audio usage with PipeWire.
@@ -95,8 +98,6 @@
       ];
       programs.zsh.enable = true;
       users.users.anthony.shell = pkgs.zsh;
-
-      networking.hostName = "zeno";
 
       # This option defines the first version of NixOS you have installed on this particular machine,
       # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
