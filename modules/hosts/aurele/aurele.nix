@@ -1,26 +1,21 @@
-{ inputs, self, ... }:
 {
-  flake.nixosConfigurations.aurele = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    specialArgs = {
-      inherit inputs self;
-    };
-    modules = [
-      self.nixosModules.base-desktop-gnome
-      inputs.home-manager.nixosModules.home-manager
-      self.nixosModules.aurele-module
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.backupFileExtension = "";
-        home-manager.users.anthony = {
-          imports = [
-            self.homeModules.aurele-module
-          ];
-        };
-      }
-    ];
-  };
+  self,
+  mkNixos,
+  ...
+}:
+{
+
+  flake.nixosConfigurations.aurele = mkNixos [
+    self.nixosModules.base-desktop-gnome
+    self.nixosModules.aurele-module
+    {
+      home-manager.users.anthony = {
+        imports = [
+          self.homeModules.aurele-module
+        ];
+      };
+    }
+  ];
 
   flake.nixosModules.aurele-module =
     { lib, pkgs, ... }:

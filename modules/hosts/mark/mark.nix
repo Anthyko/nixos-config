@@ -1,27 +1,24 @@
-{ inputs, self, ... }:
+{
+  inputs,
+  self,
+  mkNixos,
+  ...
+}:
 {
 
-  flake.nixosConfigurations.mark = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    specialArgs = {
-      inherit inputs self;
-    };
-    modules = [
-      self.nixosModules.base
-      inputs.disko.nixosModules.disko
-      inputs.home-manager.nixosModules.home-manager
-      self.nixosModules.mark-module
-
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.users.anthony = {
-          imports = [
-            self.homeModules.mark-module
-          ];
-        };
-      }
-    ];
-  };
+  flake.nixosConfigurations.mark = mkNixos [
+    self.nixosModules.base
+    inputs.disko.nixosModules.disko
+    inputs.home-manager.nixosModules.home-manager
+    self.nixosModules.mark-module
+    {
+      home-manager.users.anthony = {
+        imports = [
+          self.homeModules.mark-module
+        ];
+      };
+    }
+  ];
 
   flake.nixosModules.mark-module =
     { modulesPath, pkgs, ... }:
