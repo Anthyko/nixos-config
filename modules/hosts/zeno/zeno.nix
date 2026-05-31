@@ -37,7 +37,6 @@
       boot.kernelPackages = pkgs.linuxPackages_zen;
       hardware.keyboard.qmk.enable = true;
       networking = {
-        enable = true;
         hostName = "zeno";
       };
       #   Disable power saving for the snd_hda_intel driver.

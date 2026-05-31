@@ -181,13 +181,13 @@ in
       };
     };
     # reload services on acme update
-    security.acme.certs.${mailHost} = {
-      group = "acme";
-      reloadServices = [
-        "postfix.service"
-        "dovecot2.service"
-      ];
-    };
 
+  };
+  security.acme.certs.${mailHost} = {
+    group = "acme";
+    reloadServices = [
+      "postfix.service"
+      "dovecot2.service"
+    ];
   };
 }

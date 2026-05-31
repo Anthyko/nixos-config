@@ -15,8 +15,8 @@ in
     groups.certreaders = { };
     users = {
 
-      users.nginx.extraGroups = [ "certreaders" ];
-      users.murmur.extraGroups = [ "certreaders" ];
+      nginx.extraGroups = [ "certreaders" ];
+      murmur.extraGroups = [ "certreaders" ];
     };
   };
 
