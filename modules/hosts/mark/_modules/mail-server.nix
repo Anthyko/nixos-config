@@ -36,6 +36,7 @@ in
       owner = "postfix";
       group = "postfix";
       mode = "0440";
+      restartUnits = [ "postfix.service" ];
     };
 
     secrets."postfix/smtp2go-sasl-passwd" = {
@@ -43,6 +44,7 @@ in
       owner = "postfix";
       group = "postfix";
       mode = "0440";
+      restartUnits = [ "postfix.service" ];
     };
 
     secrets."postfix/aliases" = {
@@ -50,12 +52,14 @@ in
       owner = "postfix";
       group = "postfix";
       mode = "0440";
+      restartUnits = [ "postfix.service" ];
     };
     secrets."dovecot/users" = {
       sopsFile = ../../../../secrets/secrets.yaml;
       owner = "dovecot2";
       group = "dovecot2";
       mode = "0400";
+      restartUnits = [ "dovecot2.service" ];
     };
   };
 
