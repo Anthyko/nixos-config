@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
@@ -30,7 +31,7 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-
+    nixpkgs.source = inputs.nixpkgs;
     # You can easily change to a different colorscheme.
     # Add your colorscheme here and enable it.
     # Don't forget to disable the colorschemes you arent using
