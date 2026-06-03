@@ -15,7 +15,6 @@
         LANG = "en_US.UTF-8";
         LC_ALL = "en_US.UTF-8";
       };
-      stylix.targets.nixvim.enable = false;
       home.packages = with pkgs; [
         qFlipper
         easyeffects

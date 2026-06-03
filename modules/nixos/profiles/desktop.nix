@@ -9,7 +9,6 @@
         niri
       ])
       ++ [
-        inputs.stylix.nixosModules.stylix
       ];
 
   };
@@ -22,7 +21,6 @@
         base
       ])
       ++ [
-        inputs.stylix.nixosModules.stylix
       ];
 
   };
