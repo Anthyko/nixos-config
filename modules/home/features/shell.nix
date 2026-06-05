@@ -28,13 +28,11 @@
       programs.zsh = {
         enable = true;
         enableCompletion = true;
-        syntaxHighlighting.enable = true;
         defaultKeymap = "viins";
         completionInit = "autoload -Uz compinit && compinit -C";
         initContent = lib.mkBefore ''
           export PATH="$HOME/bin:$PATH"
           export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
-          zcompile ~/.zshrc
           fcd() {
             local dir
              dir=$(fd . ~/ /mnt -t d --hidden --exclude .git 2>/dev/null \
@@ -80,6 +78,7 @@
                 "from:github"
               ];
             }
+            { name = "zsh-users/zsh-syntax-highlighting"; }
           ];
         };
       };
