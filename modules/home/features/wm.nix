@@ -3,20 +3,16 @@
   ...
 }:
 {
-  flake.homeModules.niri =
-    { pkgs, ... }:
+  flake.homeModules.desktop-utils =
+    { ... }:
     {
 
       imports = [
-        self.homeModules.waybar
         self.homeModules.terminal
       ];
 
       programs = {
-        fuzzel.enable = true; # Super+D in the default setting (app launcher)
         swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
-        waybar.enable = true; # launch on startup in the default setting (bar)
-
       };
       services = {
         swayidle.enable = true; # idle management daemon
@@ -30,23 +26,7 @@
           tray = true;
         };
 
-        mako = {
-          # Notifications
-          enable = true;
-          settings = {
-
-            default-timeout = 5000; # milliseconds
-          };
-        };
       };
-      home.packages = with pkgs; [
-        swaybg # wallpaper
-        xwayland-satellite
-        networkmanagerapplet # network manager
-        pavucontrol # audio control
-      ];
-      # used niri config file
-      xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
 
     };
 }

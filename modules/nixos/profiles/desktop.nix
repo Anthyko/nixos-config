@@ -7,9 +7,14 @@
         base
         x-server
         niri
+        display-manager
       ])
       ++ [
       ];
+
+    security.polkit.enable = true; # polkit
+    services.gnome.gnome-keyring.enable = true; # secret service
+    programs.xwayland.enable = true;
 
   };
 

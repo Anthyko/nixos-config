@@ -20,7 +20,7 @@
 
       imports = [
         self.homeModules.base
-        self.homeModules.niri
+        self.homeModules.desktop-utils
         self.homeModules.terminal
         self.homeModules.multimedia-player
       ];

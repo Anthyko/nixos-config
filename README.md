@@ -7,6 +7,7 @@ This repository contains a modular NixOS and Home Manager setup built with:
 
 - Nix Flakes
 - flake-parts
+- nix-wrapper-modules
 - import-tree
 - sops-nix
 
@@ -45,6 +46,7 @@ features → profiles → hosts / users
 - profiles: reusable bundles (base, desktop, server)
 - hosts: final machine configurations
 - users: home-manager configurations
+- packages: wrapped packages
 
 ---
 
@@ -62,6 +64,7 @@ modules/
 │   ├── profiles/
 hosts/
 users/
+packages/
 ```
 
 ---

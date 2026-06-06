@@ -28,6 +28,7 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +62,9 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
       ];
       imports = [
         inputs.home-manager.flakeModules.home-manager
