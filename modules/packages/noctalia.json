@@ -580,8 +580,8 @@
       "criticalUrgencyDuration": 15,
       "clearDismissed": true,
       "saveToHistory": {
-        "low": true,
-        "normal": true,
+        "low": false,
+        "normal": false,
         "critical": true
       },
       "sounds": {
@@ -717,7 +717,7 @@
       }
     },
     "notificationsState": {
-      "lastSeenTs": 0
+      "lastSeenTs": 1780735936000
     },
     "changelogState": {
       "lastSeenVersion": "v4.7.7"
