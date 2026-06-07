@@ -42,11 +42,11 @@ The configuration follows a **feature → profile → host/user** architecture.
 features → profiles → hosts / users
 ```
 
-- features: small reusable modules (ntp, tailscale, niri, etc.)
+- features: small reusable modules (ntp, tailscale, etc.)
 - profiles: reusable bundles (base, desktop, server)
 - hosts: final machine configurations
 - users: home-manager configurations
-- packages: wrapped packages
+- packages: wrapped packages (nvim, niri, etc.) 
 
 ---
 
