@@ -46,7 +46,7 @@ features → profiles → hosts / users
 - profiles: reusable bundles (base, desktop, server)
 - hosts: final machine configurations
 - users: home-manager configurations
-- packages: wrapped packages (nvim, niri, etc.) 
+- packages: wrapped packages (nvim, niri, etc.)
 
 ---
 
