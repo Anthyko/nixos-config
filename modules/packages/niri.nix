@@ -50,7 +50,7 @@
           layout.center-focused-column = "never";
           binds = {
             "Mod+Shift+Slash".show-hotkey-overlay = _: { };
-            "Mod+Return".spawn-sh = lib.getExe pkgs.foot;
+            "Mod+Return".spawn-sh = lib.getExe self'.packages.foot;
             "Mod+B".spawn = lib.getExe pkgs.firefox;
             "Mod+D".spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
             "Mod+O".toggle-overview = _: { };
