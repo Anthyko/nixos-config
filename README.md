@@ -208,4 +208,3 @@ home-manager switch --flake .#anthony
 # Todo
 
 - follow : https://github.com/NixOS/nixpkgs/issues/513245
-- package for terminal, git and mpv
