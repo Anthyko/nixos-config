@@ -130,7 +130,7 @@
             "showDiskAvailable": false,
             "showDiskUsage": false,
             "showDiskUsageAsPercent": false,
-            "showGpuTemp": false,
+            "showGpuTemp": true,
             "showLoadAverage": false,
             "showMemoryAsPercent": false,
             "showMemoryUsage": true,
@@ -448,11 +448,11 @@
       "diskAvailCriticalThreshold": 10,
       "batteryWarningThreshold": 20,
       "batteryCriticalThreshold": 5,
-      "enableDgpuMonitoring": false,
+      "enableDgpuMonitoring": true,
       "useCustomColors": false,
       "warningColor": "",
       "criticalColor": "",
-      "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor"
+      "externalMonitor": "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor || nvidia-smi"
     },
     "noctaliaPerformance": {
       "disableWallpaper": true,
@@ -717,7 +717,7 @@
       }
     },
     "notificationsState": {
-      "lastSeenTs": 1780735936000
+      "lastSeenTs": 1781272793000
     },
     "changelogState": {
       "lastSeenVersion": "v4.7.7"
