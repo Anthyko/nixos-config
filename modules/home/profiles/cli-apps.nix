@@ -7,6 +7,7 @@
       imports = [
         self.homeModules.shell
         self.homeModules.text-editor
+        self.homeModules.terminal-file-manager
       ];
       programs.nh = {
         enable = true;
@@ -28,7 +29,6 @@
         htop
         ifuse
         lazygit
-        lf
         tldr
         wget
         unzip
