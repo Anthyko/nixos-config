@@ -1,31 +1,29 @@
-{ inputs, self, ... }:
+{ self, ... }:
 {
   flake.homeModules.terminal =
     { pkgs, ... }:
     {
       home.packages = [ self.packages.${pkgs.system}.foot ];
     };
-  perSystem =
-    { pkgs, ... }:
+  flake.wrappers.foot =
+    { wlib, ... }:
     {
+      imports = [ wlib.wrapperModules.foot ];
 
-      packages.foot = inputs.wrapper-modules.wrappers.foot.wrap {
-        inherit pkgs;
-        settings = {
-          main = {
-            term = "foot";
-            font = "JetBrainsMono Nerd Font:size=12";
-          };
+      settings = {
+        main = {
+          term = "foot";
+          font = "JetBrainsMono Nerd Font:size=12";
+        };
 
-          csd = {
-            preferred = "none";
-          };
+        csd = {
+          preferred = "none";
+        };
 
-          bell = {
-            urgent = "no";
-            notify = "no";
-            visual = "no";
-          };
+        bell = {
+          urgent = "no";
+          notify = "no";
+          visual = "no";
         };
       };
     };

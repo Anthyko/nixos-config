@@ -67,6 +67,7 @@
       ];
       imports = [
         inputs.home-manager.flakeModules.home-manager
+        inputs.wrapper-modules.flakeModules.wrappers
         (inputs.import-tree ./modules)
       ];
 
