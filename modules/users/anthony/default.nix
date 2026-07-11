@@ -21,7 +21,6 @@
         protonup-qt
         protonup-ng
         libreoffice-still
-        lutris
         r2modman
         usbutils
         gnupg

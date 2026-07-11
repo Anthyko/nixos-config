@@ -9,6 +9,8 @@
   programs.steam.remotePlay.openFirewall = true;
   environment.systemPackages = with pkgs; [
     mangohud
+    lutris
+    r2modman
   ];
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";

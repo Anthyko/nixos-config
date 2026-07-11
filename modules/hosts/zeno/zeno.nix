@@ -23,7 +23,7 @@
     {
       imports = [
         ./_modules/audio.nix
-        ./_modules/steam.nix
+        ./_modules/gaming.nix
         ./_modules/nvidia.nix
         ../../../hardware/zeno/hardware-configuration.nix
       ];
