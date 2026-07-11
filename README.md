@@ -76,6 +76,7 @@ packages/
 - files prefixed with `_` are ignored by import-tree
 - NixOS and Home Manager modules are kept separate
 - modules/ contains reusable logic
+- Home Manager for configuring CLI tools and shell environments.
 
 ---
 

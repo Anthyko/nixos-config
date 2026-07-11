@@ -14,40 +14,26 @@
       ];
     };
 
-  flake.homeModules.base-desktop =
-    { pkgs, ... }:
-    {
+  flake.homeModules.base-desktop = {
 
-      services = {
-        swayidle.enable = true; # idle management daemon
-        polkit-gnome.enable = true; # polkit
-        gammastep = {
-          enable = true;
-          latitude = "43.580799";
-          longitude = "7.123900";
-          temperature.day = 5200;
-          temperature.night = 3600;
-          tray = true;
-        };
-
+    services = {
+      swayidle.enable = true; # idle management daemon
+      polkit-gnome.enable = true; # polkit
+      gammastep = {
+        enable = true;
+        latitude = "43.580799";
+        longitude = "7.123900";
+        temperature.day = 5200;
+        temperature.night = 3600;
+        tray = true;
       };
-      imports = [
-        self.homeModules.base
-        self.homeModules.terminal
-        self.homeModules.multimedia-player
-      ];
 
-      home.packages = with pkgs; [
-        thunderbird
-        signal-desktop
-        mumble
-        discord
-        filezilla
-        cryptomator
-        anki
-        vial # keyboard config
-        proton-vpn
-        obsidian
-      ];
     };
+    imports = [
+      self.homeModules.base
+      self.homeModules.terminal
+      self.homeModules.multimedia-player
+    ];
+
+  };
 }

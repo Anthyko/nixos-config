@@ -8,6 +8,12 @@
         x-server
         niri
         display-manager
+        communication
+        file-encryption
+        password-manager
+        memory-training
+        notes
+        vpn
       ])
       ++ [
       ];
@@ -24,6 +30,8 @@
         x-server
         gnome
         base
+        password-manager
+        file-encryption
       ])
       ++ [
       ];

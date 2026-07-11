@@ -85,10 +85,9 @@
         initialPassword = "test";
         packages = with pkgs; [
           firefox
-          tree
           protonup-ng
-          keepassxc
           steam-run
+          vial # keyboard config
         ];
       };
       fonts.packages = [
