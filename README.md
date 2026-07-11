@@ -207,5 +207,3 @@ home-manager switch --flake .#anthony
 ---
 
 # Todo
-
-- follow : https://github.com/NixOS/nixpkgs/issues/513245
