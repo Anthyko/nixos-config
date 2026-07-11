@@ -14,6 +14,7 @@
         memory-training
         notes
         vpn
+        ebook-library
       ])
       ++ [
       ];
