@@ -10,6 +10,7 @@
       signal-desktop
       mumble
       discord
+      pidgin
     ];
   };
 
