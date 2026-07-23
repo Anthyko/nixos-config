@@ -1,11 +1,6 @@
 name: Build-configs
 on:
   workflow_dispatch:
-  push:
-    branches: [ master ]
-    paths-ignore:
-      - '**.md'
-      - '**.yml'
 
 concurrency:
   group: master-build
