@@ -16,6 +16,7 @@
       {
         imports = [
           self.homeModules.cli-apps
+          self.homeModules.python
         ];
 
         # Home Manager needs a bit of information about you and the paths it should
@@ -39,28 +40,6 @@
           k9s
         ];
 
-        programs.uv = {
-          enable = true;
-
-          python = {
-            versions = [
-              "3.14"
-              "3.13"
-              "3.12"
-              "3.11"
-            ];
-            default = [ "3.11" ];
-            prune = true;
-          };
-
-          tool = {
-            packages = [
-              "poetry"
-              "nox"
-            ];
-            prune = true;
-          };
-        };
         home.sessionVariables = {
           EDITOR = "nvim";
           LD_LIBRARY_PATH = "";

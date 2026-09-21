@@ -17,7 +17,10 @@
         "markdownlint"
         #vale
       ];
-      python = [ "pylint" ];
+      python = [
+        "pylint"
+        "mypy"
+      ];
       #clojure = ["clj-kondo"];
       #dockerfile = ["hadolint"];
       #inko = ["inko"];

@@ -90,6 +90,11 @@
         };
         pyright = {
           enable = true;
+          settings = {
+            python.analysis = {
+              typeCheckingMode = "basic";
+            };
+          };
         };
         bashls = {
           enable = true;

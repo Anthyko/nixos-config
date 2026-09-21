@@ -5,10 +5,21 @@
     { pkgs, ... }:
     {
 
-      home.packages = with pkgs; [
-        python3
-        poetry
-      ];
+      programs.uv = {
+        enable = true;
+
+        python = {
+          versions = [
+            "3.14"
+            "3.13"
+            "3.12"
+            "3.11"
+          ];
+          default = [ "3.11" ];
+          prune = true;
+        };
+
+      };
     };
 
 }
