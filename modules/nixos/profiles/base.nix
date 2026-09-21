@@ -17,6 +17,8 @@
         inputs.home-manager.nixosModules.home-manager
         inputs.sops-nix.nixosModules.sops
       ];
+    # Enable support for running dynamically linked Linux binaries.
+    programs.nix-ld.enable = true;
   };
 
 }

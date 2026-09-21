@@ -12,6 +12,10 @@
       imports = [
         self.homeModules.cli-apps
       ];
+      # Add ~/.local/bin to the user's PATH.
+      home.sessionPath = [
+        "$HOME/.local/bin"
+      ];
     };
 
   flake.homeModules.base-desktop = {
