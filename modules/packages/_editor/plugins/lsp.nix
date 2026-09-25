@@ -92,7 +92,7 @@
           enable = true;
           settings = {
             python.analysis = {
-              typeCheckingMode = "basic";
+              typeCheckingMode = "off";
             };
           };
         };
