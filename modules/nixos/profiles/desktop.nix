@@ -16,6 +16,7 @@
         vpn
         ebook-library
         music-player
+        file-sharing
       ])
       ++ [
       ];
@@ -35,6 +36,7 @@
         vpn
         password-manager
         file-encryption
+        file-sharing
       ])
       ++ [
       ];
