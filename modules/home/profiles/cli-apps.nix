@@ -27,16 +27,15 @@
         gh
         gitflow
         htop
-        ifuse
         lazygit
         tldr
         wget
         unzip
         zip
         gnupg
-        rclone
         dig
         exfat
+        ffmpeg
       ];
     };
 

@@ -32,27 +32,64 @@
         defaultKeymap = "viins";
         completionInit = "autoload -Uz compinit && compinit -C";
         initContent = lib.mkBefore ''
-          export PATH="$HOME/bin:$PATH"
-          export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
-          fcd() {
-            local dir
-             dir=$(fd . ~/ /mnt -t d --hidden --exclude .git 2>/dev/null \
-              | fzf --preview 'exa -T --color=always {} | head -40') || return
-            cd "$dir"
-          }
-           # Load per-host/user overrides if present
-           if [[ -r "$HOME/.zshrc_local" ]]; then
-              source "$HOME/.zshrc_local"
+                export PATH="$HOME/bin:$PATH"
+                export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+                fcd() {
+                  local dir
+                   dir=$(fd . ~/ /mnt -t d --hidden --exclude .git 2>/dev/null \
+                    | fzf --preview 'exa -T --color=always {} | head -40') || return
+                  cd "$dir"
+                }
+                 # Load per-host/user overrides if present
+                 if [[ -r "$HOME/.zshrc_local" ]]; then
+                    source "$HOME/.zshrc_local"
+                  fi
+
+                nixwiki() { #search in nixos wiki
+                  xdg-open "https://wiki.nixos.org/w/index.php?search=$1" >/dev/null 2>&1
+                }
+                nixo() { #search for nix options
+                  xdg-open "https://search.nixos.org/options?channel=unstable&include_modular_service_options=1&include_nixos_options=1&query=$1" >/dev/null 2>&1
+                }
+                nixp() { #search for nix packages
+                  xdg-open "https://search.nixos.org/packages?channel=unstable&include_modular_service_options=1&include_nixos_options=1&query=$1" >/dev/null 2>&1
+                }
+                add_subtitles() {
+            if [ "$#" -ne 2 ]; then
+              echo "Usage: add_subtitles <video> <subtitles.srt>"
+              return 1
             fi
 
-          nixwiki() { #search in nixos wiki
-            xdg-open "https://wiki.nixos.org/w/index.php?search=$1" >/dev/null 2>&1
-          }
-          nixo() { #search for nix options
-            xdg-open "https://search.nixos.org/options?channel=unstable&include_modular_service_options=1&include_nixos_options=1&query=$1" >/dev/null 2>&1
-          }
-          nixp() { #search for nix packages
-            xdg-open "https://search.nixos.org/packages?channel=unstable&include_modular_service_options=1&include_nixos_options=1&query=$1" >/dev/null 2>&1
+            local video="$1"
+            local subs="$2"
+            local output="''${video%.*}_with_subs.mkv"
+
+            if [ ! -f "$video" ]; then
+              echo "Error: video file not found: $video"
+              return 1
+            fi
+
+            if [ ! -f "$subs" ]; then
+              echo "Error: subtitle file not found: $subs"
+              return 1
+            fi
+
+            ffmpeg \
+              -i "$video" \
+              -i "$subs" \
+              -map 0 \
+              -map 1:0 \
+              -c copy \
+              -metadata:s:s:0 language=fra \
+              -metadata:s:s:0 title="French" \
+              "$output"
+
+            if [ $? -eq 0 ]; then
+              echo "File created: $output"
+            else
+              echo "Error: ffmpeg failed"
+              return 1
+            fi
           }
         '';
 
