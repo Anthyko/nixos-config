@@ -210,3 +210,5 @@ home-manager switch --flake .#anthony
 ---
 
 # Todo
+
+- refactor homeModule to have the smallest dependency to home-manager possible

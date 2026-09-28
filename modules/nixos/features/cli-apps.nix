@@ -8,6 +8,7 @@
 
     imports = with inputs.self.nixosModules; [
       terminal-file-manager
+      multimedia-player
     ];
     environment.systemPackages = with pkgs; [
       fzf

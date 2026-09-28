@@ -1,11 +1,11 @@
 { self, ... }:
 {
-  flake.homeModules.multimedia-player =
-    { pkgs, ... }:
-    {
-      home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.mpv ];
-    };
+  flake.nixosModules.multimedia-player = { pkgs, ... }: {
 
+    environment.systemPackages = [
+      self.packages.${pkgs.stdenv.hostPlatform.system}.mpv
+    ];
+  };
   flake.wrappers.mpv =
     { wlib, pkgs, ... }:
     {
