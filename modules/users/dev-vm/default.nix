@@ -16,8 +16,8 @@
       { pkgs, ... }:
       {
         imports = [
-          self.homeModules.cli-apps
           self.homeModules.python
+          self.homeModules.base-home-cli
         ];
 
         # Home Manager needs a bit of information about you and the paths it should
@@ -39,6 +39,10 @@
         home.packages = with pkgs; [
           zellij
           k9s
+          gitflow
+          zellij
+          lazygit
+
         ];
 
         home.sessionVariables = {

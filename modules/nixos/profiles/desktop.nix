@@ -8,7 +8,6 @@
         imports = with inputs.self.nixosModules; [
           base
           x-server
-          display-manager
           communication
           file-encryption
           password-manager
@@ -27,6 +26,7 @@
       base-desktop-niri = {
         imports = with inputs.self.nixosModules; [
           base-desktop
+          display-manager
           niri
         ];
 

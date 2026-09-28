@@ -12,6 +12,7 @@
         file-sync
         tailscale
         secrets
+        cli-apps
       ])
       ++ [
         inputs.home-manager.nixosModules.home-manager

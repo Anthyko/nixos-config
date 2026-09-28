@@ -6,6 +6,14 @@
       home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.yazi ];
     };
 
+  flake.nixosModules.terminal-file-manager =
+    { pkgs, ... }:
+    {
+      programs.yazi = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.yazi;
+      };
+    };
   flake.wrappers.yazi =
     { wlib, ... }:
     {
