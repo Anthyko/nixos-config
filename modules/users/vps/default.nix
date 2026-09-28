@@ -2,6 +2,7 @@
 
 {
 
+  # remote server only user-module
   flake.homeModules.mark-module =
     { ... }:
     {

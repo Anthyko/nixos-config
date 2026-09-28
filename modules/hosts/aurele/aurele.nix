@@ -11,7 +11,7 @@
     {
       home-manager.users.anthony = {
         imports = [
-          self.homeModules.aurele-module
+          self.homeModules.anthony-module
         ];
       };
     }

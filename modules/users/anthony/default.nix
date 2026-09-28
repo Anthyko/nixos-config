@@ -1,5 +1,7 @@
 { self, system, ... }:
+
 {
+  # Desktop user config
   flake.homeModules.anthony-module =
     { pkgs, ... }:
     {

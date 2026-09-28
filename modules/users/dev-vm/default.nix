@@ -11,6 +11,7 @@
       self.homeModules.revan-module
     ];
 
+    # home-manager only user config
     homeModules.revan-module =
       { pkgs, ... }:
       {
