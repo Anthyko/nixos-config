@@ -60,7 +60,6 @@
     };
     imports = [
       self.homeModules.base
-      self.homeModules.terminal
     ];
 
   };

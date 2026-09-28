@@ -19,6 +19,7 @@
           file-sharing
           office
           qflipper
+          terminal
         ];
 
       };

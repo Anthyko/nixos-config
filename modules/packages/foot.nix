@@ -1,10 +1,11 @@
 { self, ... }:
 {
-  flake.homeModules.terminal =
-    { pkgs, ... }:
-    {
-      home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.foot ];
-    };
+  flake.nixosModules.terminal = { pkgs, ... }: {
+
+    environment.systemPackages = [
+      self.packages.${pkgs.stdenv.hostPlatform.system}.foot
+    ];
+  };
   flake.wrappers.foot =
     { wlib, ... }:
     {
