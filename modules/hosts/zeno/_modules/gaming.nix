@@ -11,6 +11,8 @@
     mangohud
     lutris
     r2modman
+    protonup-qt
+    easyeffects # for microphone
   ];
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";

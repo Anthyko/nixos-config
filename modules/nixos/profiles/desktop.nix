@@ -1,46 +1,47 @@
 { inputs, ... }:
 {
 
-  flake.nixosModules.base-desktop = {
-    imports =
-      (with inputs.self.nixosModules; [
-        base
-        x-server
-        niri
-        display-manager
-        communication
-        file-encryption
-        password-manager
-        memory-training
-        notes
-        vpn
-        ebook-library
-        music-player
-        file-sharing
-      ])
-      ++ [
-      ];
+  flake = {
+    nixosModules = {
+      # software used by all the desktop configs
+      base-desktop = {
+        imports = with inputs.self.nixosModules; [
+          base
+          x-server
+          display-manager
+          communication
+          file-encryption
+          password-manager
+          memory-training
+          notes
+          vpn
+          ebook-library
+          music-player
+          file-sharing
+          office
+          qflipper
+        ];
 
-    security.polkit.enable = true; # polkit
-    services.gnome.gnome-keyring.enable = true; # secret service
-    programs.xwayland.enable = true;
+      };
 
+      base-desktop-niri = {
+        imports = with inputs.self.nixosModules; [
+          base-desktop
+          niri
+        ];
+
+        security.polkit.enable = true; # polkit
+        services.gnome.gnome-keyring.enable = true; # secret service
+        programs.xwayland.enable = true;
+
+      };
+      base-desktop-gnome = {
+        imports = with inputs.self.nixosModules; [
+          base-desktop
+          gnome
+        ];
+      };
+
+    };
   };
-
-  flake.nixosModules.base-desktop-gnome = {
-    imports =
-      (with inputs.self.nixosModules; [
-        x-server
-        gnome
-        base
-        vpn
-        password-manager
-        file-encryption
-        file-sharing
-      ])
-      ++ [
-      ];
-
-  };
-
 }

@@ -17,16 +17,6 @@
         LANG = "en_US.UTF-8";
         LC_ALL = "en_US.UTF-8";
       };
-      home.packages = with pkgs; [
-        qFlipper
-        easyeffects
-        protonup-qt
-        protonup-ng
-        libreoffice-still
-        r2modman
-        usbutils
-        gnupg
-      ];
       programs.zsh.shellAliases = {
         kde-fix-icons = "sed -i 's/file:\/\/\/nix\/store\/[^\/]*\/share\/applications\//applications:/gi' ~/.config/plasma-org.kde.plasma.desktop-appletsrc && systemctl restart --user plasma-plasmashell";
         ghb = "gh workflow run Build-configs";

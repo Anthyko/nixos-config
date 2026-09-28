@@ -36,6 +36,8 @@
         dig
         exfat
         ffmpeg
+        gnupg
+        usbutils # lsusb
       ];
     };
 
