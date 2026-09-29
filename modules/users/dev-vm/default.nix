@@ -42,6 +42,7 @@
           gitflow
           zellij
           lazygit
+          wget
 
         ];
 
