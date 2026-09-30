@@ -45,13 +45,7 @@
       runtimePkgs = with pkgs; [
         # Tools used by the shell
         eza
-        fd
         fzf
-        ffmpeg
-        gh
-        lazygit
-        nh
-        xdg-utils
         zoxide
 
         # Zsh plugins
