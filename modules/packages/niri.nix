@@ -21,6 +21,13 @@
       settings = {
         spawn-at-startup = [
           (lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia)
+          [
+            (lib.getExe' pkgs.gammastep "gammastep-indicator")
+            "-l"
+            "43.580799:7.123900"
+            "-t"
+            "5200:3600"
+          ]
         ];
 
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
