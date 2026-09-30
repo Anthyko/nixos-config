@@ -35,6 +35,10 @@
 
         mprs = "lsprs && for i in $PRS; do sleep 1 && gh pr merge -d -r $i; done";
 
+        ghb = "gh workflow run Build-configs";
+        ghbl = "gh run list --workflow build.yml";
+        ghbv = "gh run view $(gh run list --workflow build.yml -L 1 --json databaseId,conclusion,status --jq '[.[] | select(.conclusion == \"failure\" or .conclusion == \"success\" or .status == \"in_progress\")] | .[].databaseId')";
+        noctalia-json = "nix run nixpkgs#noctalia-shell ipc call state all > ./modules/packages/noctalia.json";
         j = "jobs -l";
         f = "fg";
         b = "bg";
@@ -60,7 +64,8 @@
         export PATH="$HOME/bin:$PATH"
 
         export ZVM_SYSTEM_CLIPBOARD_ENABLED=true
-
+        export LANG="en_US.UTF-8"
+        export LC_ALL="en_US.UTF-8"
         # Completion
         autoload -Uz compinit
         compinit -C

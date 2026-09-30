@@ -9,15 +9,7 @@
   flake.nixosConfigurations.mark = mkNixos [
     self.nixosModules.base
     inputs.disko.nixosModules.disko
-    inputs.home-manager.nixosModules.home-manager
     self.nixosModules.mark-module
-    {
-      home-manager.users.anthony = {
-        imports = [
-          self.homeModules.mark-module
-        ];
-      };
-    }
   ];
 
   flake.nixosModules.mark-module =

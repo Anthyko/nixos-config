@@ -8,13 +8,6 @@
   flake.nixosConfigurations.aurele = mkNixos [
     self.nixosModules.base-desktop-gnome
     self.nixosModules.aurele-module
-    {
-      home-manager.users.anthony = {
-        imports = [
-          self.homeModules.anthony-module
-        ];
-      };
-    }
   ];
 
   flake.nixosModules.aurele-module =
