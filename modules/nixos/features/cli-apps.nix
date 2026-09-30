@@ -9,6 +9,7 @@
     imports = with inputs.self.nixosModules; [
       terminal-file-manager
       multimedia-player
+      rss-reader
     ];
     environment.systemPackages = with pkgs; [
       fzf
