@@ -11,6 +11,7 @@
       multimedia-player
       rss-reader
       text-editor
+      version-control
     ];
     environment.systemPackages = with pkgs; [
       fzf
