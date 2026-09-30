@@ -16,7 +16,8 @@
       { pkgs, ... }:
       {
         imports = [
-          self.homeModules.python
+          self.homeModules.shell
+          self.homeModules.text-editor
           self.homeModules.base-home-cli
         ];
 
@@ -46,6 +47,21 @@
 
         ];
 
+        programs.uv = {
+          enable = true;
+
+          python = {
+            versions = [
+              "3.14"
+              "3.13"
+              "3.12"
+              "3.11"
+            ];
+            default = [ "3.11" ];
+            prune = true;
+          };
+
+        };
         home.sessionVariables = {
           EDITOR = "nvim";
           LD_LIBRARY_PATH = "";

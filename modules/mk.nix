@@ -36,15 +36,6 @@ in
       system = "x86_64-linux";
       specialArgs = specialArgs;
       modules = [
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "";
-            extraSpecialArgs = specialArgs;
-          };
-        }
       ]
       ++ modules;
     };

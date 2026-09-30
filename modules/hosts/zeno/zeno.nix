@@ -9,13 +9,6 @@
 
     self.nixosModules.base-desktop-niri
     self.nixosModules.zeno-module
-    {
-      home-manager.users.anthony = {
-        imports = [
-          self.homeModules.anthony-module
-        ];
-      };
-    }
   ];
 
   flake.nixosModules.zeno-module =

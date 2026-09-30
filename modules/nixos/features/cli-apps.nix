@@ -30,6 +30,7 @@
       gnupg
       usbutils # lsusb
       nh
+      uv
     ];
   };
 
