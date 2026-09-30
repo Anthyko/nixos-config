@@ -42,9 +42,49 @@ jobs:
         run: |
           nix build --accept-flake-config --print-build-logs --no-link \
             .#homeConfigurations.${HM_PROFILE}.activationPackage
+  discover-packages:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v7
 
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - id: mk
+        name: Create matrix from packages
+        run: |
+          packages_json=$(nix eval --json .#packages.x86_64-linux --apply builtins.attrNames)
+          echo "matrix={\"package\":$packages_json}" >> "$GITHUB_OUTPUT"
+
+  build-packages:
+    needs: discover-packages
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.discover-packages.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - uses: cachix/cachix-action@v17
+        with:
+          name: dat-antho-shared
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Build package
+        run: |
+          nix build --accept-flake-config --print-build-logs --no-link \
+            .#packages.x86_64-linux.${{ matrix.package }}
 # discover the nixos config names to have a dynamic way of building every config
-  discover:
+  discover-nixos-targets:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.mk.outputs.matrix }}
@@ -63,11 +103,11 @@ jobs:
           echo "matrix={\"host\":$hosts_json}" >> "$GITHUB_OUTPUT"
 
   build:
-    needs: [build-home-manager,discover]
+    needs: [build-home-manager, build-packages, discover-nixos-targets]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.discover-nixos-targets.outputs.matrix) }}
     steps:
       - uses: actions/checkout@v7
       - uses: wimpysworld/nothing-but-nix@main

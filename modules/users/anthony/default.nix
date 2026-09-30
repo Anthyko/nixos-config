@@ -8,7 +8,6 @@
       imports = [
         self.homeModules.base-desktop
         self.homeModules.python
-        self.homeModules.newsboat
       ];
       home.username = system.users.main;
       home.homeDirectory = "/home/${system.users.main}";
