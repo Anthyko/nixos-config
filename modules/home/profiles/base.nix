@@ -34,11 +34,6 @@
         "anthony"
       ];
 
-      programs.nh = {
-        enable = true;
-        clean.enable = true;
-        clean.extraArgs = "--keep 3";
-      };
       programs.git = {
         # not sure this should be here
         enable = true;

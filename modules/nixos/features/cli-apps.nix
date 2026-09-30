@@ -28,6 +28,7 @@
       ffmpeg
       gnupg
       usbutils # lsusb
+      nh
     ];
   };
 
