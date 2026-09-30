@@ -10,6 +10,7 @@
       terminal-file-manager
       multimedia-player
       rss-reader
+      text-editor
     ];
     environment.systemPackages = with pkgs; [
       fzf

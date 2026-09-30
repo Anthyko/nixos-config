@@ -84,7 +84,6 @@
           firefox
           keepassxc
         ];
-        shell = pkgs.zsh;
       };
 
       programs.zsh.enable = true;

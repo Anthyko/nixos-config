@@ -34,13 +34,20 @@
         "anthony"
       ];
 
-      imports = [
-        self.homeModules.base-home-cli
-      ];
-      # Add ~/.local/bin to the user's PATH.
-      home.sessionPath = [
-        "$HOME/.local/bin"
-      ];
+      programs.nh = {
+        enable = true;
+        clean.enable = true;
+        clean.extraArgs = "--keep 3";
+      };
+      programs.git = {
+        # not sure this should be here
+        enable = true;
+        settings.user = {
+          email = "16465475+dat-Antho@users.noreply.github.com";
+          name = "anthony";
+        };
+      };
+      services.ssh-agent.enable = true;
     };
 
   flake.homeModules.base-desktop = {
