@@ -17,6 +17,7 @@
           ebook-library
           music-player
           file-sharing
+          shell
           office
           qflipper
           terminal

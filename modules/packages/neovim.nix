@@ -9,6 +9,17 @@
       };
       home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.nvim ];
     };
+  flake.nixosModules.text-editor =
+    { pkgs, ... }:
+    {
+      environment.sessionVariables = {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+      };
+      environment.systemPackages = [
+        self.packages.${pkgs.stdenv.hostPlatform.system}.nvim
+      ];
+    };
   perSystem =
     { system, ... }:
     {
