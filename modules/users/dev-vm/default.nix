@@ -18,7 +18,6 @@
         imports = [
           self.homeModules.shell
           self.homeModules.text-editor
-          self.homeModules.base-home-cli
         ];
 
         # Home Manager needs a bit of information about you and the paths it should
