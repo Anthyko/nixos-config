@@ -34,14 +34,6 @@
         "anthony"
       ];
 
-      programs.git = {
-        # not sure this should be here
-        enable = true;
-        settings.user = {
-          email = "16465475+dat-Antho@users.noreply.github.com";
-          name = "anthony";
-        };
-      };
       services.ssh-agent.enable = true;
     };
 
