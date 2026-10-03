@@ -2,6 +2,7 @@
 
 {
   perSystem = { pkgs, ... }: {
+    # pkg containing dev tools to install on non-nixos systems
     packages.dev-tools = pkgs.buildEnv {
       name = "dev-tools";
 

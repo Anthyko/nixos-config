@@ -158,35 +158,8 @@ sudo nixos-rebuild switch --flake .#aurele
 
 ---
 
-### Home Manager
+### Home Manager (deprecated)
 
-#### Using nh
-
-```
-nh home switch .#<user>
-```
-
-Example:
-
-```
-nh home switch .#revan
-```
-
-Dry run:
-
-```
-nh home test .#revan
-```
-
-Build only:
-
-```
-nh home build .#revan
-```
-
----
-
-#### Using Home Manager directly
 
 ```
 home-manager switch --flake .#<user>
@@ -201,6 +174,14 @@ Example:
 home-manager switch --flake .#anthony
 ```
 
+
+### Using the packages and nix profile
+
+A package with common dev tools is exposed to install it use :
+
+```
+nix profile install github:Anthyko/nixos-config#dev-tools
+```
 ---
 
 # Todo
