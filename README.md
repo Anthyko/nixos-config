@@ -57,7 +57,6 @@ modules/
 │   ├── features/
 │   ├── profiles/
 hosts/
-users/
 packages/
 ```
 
