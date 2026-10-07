@@ -8,8 +8,11 @@ on:
       - reopened
 
   push:
+    paths-ignore:
+      - 'README.md'
     branches:
       - master
+      
 concurrency:
   group: mr-build
   cancel-in-progress: true
