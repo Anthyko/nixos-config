@@ -183,5 +183,3 @@ nix profile add github:Anthyko/nixos-config#dev-tools
 ls -l ~/.nix-profile/bin/ # to list available packages
 ```
 ---
-
-# Todo
