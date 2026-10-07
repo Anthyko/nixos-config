@@ -179,7 +179,7 @@ home-manager switch --flake .#anthony
 A package with common dev tools is exposed to install it use :
 
 ```
-nix profile install github:Anthyko/nixos-config#dev-tools
+nix profile add github:Anthyko/nixos-config#dev-tools
 ```
 ---
 
