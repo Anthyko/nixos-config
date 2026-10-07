@@ -180,6 +180,7 @@ A package with common dev tools is exposed to install it use :
 
 ```
 nix profile add github:Anthyko/nixos-config#dev-tools
+ls -l ~/.nix-profile/bin/ # to list available packages
 ```
 ---
 
