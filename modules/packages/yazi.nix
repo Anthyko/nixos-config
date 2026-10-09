@@ -1,11 +1,5 @@
 { self, ... }:
 {
-  flake.homeModules.terminal-file-manager =
-    { pkgs, ... }:
-    {
-      home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.yazi ];
-    };
-
   flake.nixosModules.terminal-file-manager =
     { pkgs, ... }:
     {

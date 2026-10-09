@@ -23,28 +23,6 @@ env:
   CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
 jobs:
-  build-home-manager:
-    runs-on: ubuntu-latest
-    env:
-      HM_PROFILE: revan
-      CACHIX: dat-antho-shared
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: cachix/install-nix-action@v31
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-
-      - uses: cachix/cachix-action@v17
-        with:
-          name: ${{ env.CACHIX }}
-          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
-
-      - name: Build Home Manager activation package
-        run: |
-          nix build --accept-flake-config --print-build-logs --no-link \
-            .#homeConfigurations.${HM_PROFILE}.activationPackage
   discover-packages:
     runs-on: ubuntu-latest
     outputs:
@@ -106,7 +84,7 @@ jobs:
           echo "matrix={\"host\":$hosts_json}" >> "$GITHUB_OUTPUT"
 
   build:
-    needs: [build-home-manager, build-packages, discover-nixos-targets]
+    needs: [build-packages, discover-nixos-targets]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

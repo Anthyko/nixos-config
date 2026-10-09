@@ -3,7 +3,7 @@
 
 # NixOS Configuration
 
-This repository contains a modular NixOS and Home Manager setup built with:
+This repository contains a modular NixOS configs and packages built with:
 
 - Nix Flakes
 - flake-parts
@@ -11,7 +11,7 @@ This repository contains a modular NixOS and Home Manager setup built with:
 - import-tree
 - sops-nix
 
-The configuration follows a **feature → profile → host/user** architecture.
+The configuration follows a **feature → profile → host** architecture.
 
 ---
 
@@ -25,24 +25,17 @@ The configuration follows a **feature → profile → host/user** architecture.
 | aurele | Laptop         |
 | mark   | VPS / server   |
 
-### Home Manager
-
-| Profile | Description   |
-|---------|---------------|
-| revan   | Dev VM        |
-
 ---
 
 ## Architecture
 
 ```
-features → profiles → hosts / users
+features → profiles → hosts
 ```
 
 - features: small reusable modules (ntp, tailscale, etc.)
 - profiles: reusable bundles (base, desktop, server)
 - hosts: final machine configurations
-- users: home-manager configurations
 - packages: wrapped packages (nvim, niri, etc.)
 
 ---
@@ -67,7 +60,6 @@ packages/
 - import-tree is used only for flake modules and reusable components
 - hardware configurations are isolated in hardware/
 - files prefixed with `_` are ignored by import-tree
-- NixOS and Home Manager modules are kept separate
 - modules/ contains reusable logic
 
 
@@ -156,23 +148,6 @@ sudo nixos-rebuild switch --flake .#aurele
 ```
 
 ---
-
-### Home Manager (deprecated)
-
-
-```
-home-manager switch --flake .#<user>
-#or
-nix run github:nix-community/home-manager/release-unstable -- switch --flake  TOCHANGE
-```
-
-
-Example:
-
-```
-home-manager switch --flake .#anthony
-```
-
 
 ### Using the packages and nix profile
 
