@@ -157,6 +157,9 @@
         if [[ -r "$HOME/.zshrc_local" ]]; then
           source "$HOME/.zshrc_local"
         fi
+
+        HISTFILE=$HOME/.zsh_history
+        SAVEHIST=10000
       '';
     };
 }
