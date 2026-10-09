@@ -1,5 +1,5 @@
 {
-  description = "NixOS and Home Manager shared config";
+  description = "NixOS and packages config";
 
   nixConfig.substituters = [
     "https://datantho-nixos.cachix.org"
@@ -37,11 +37,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     import-tree.url = "github:vic/import-tree";
 
     nixvim = {
@@ -65,7 +60,6 @@
       ];
 
       imports = [
-        inputs.home-manager.flakeModules.home-manager
         inputs.wrapper-modules.flakeModules.wrappers
         (inputs.import-tree ./modules)
       ];

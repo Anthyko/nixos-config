@@ -39,13 +39,4 @@ in
       ]
       ++ modules;
     };
-
-  # mkHome is for standalone home-manager configs
-  _module.args.mkHome =
-    system: modules:
-    inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = specialArgs;
-      modules = modules;
-    };
 }

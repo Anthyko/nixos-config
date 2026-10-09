@@ -1,14 +1,5 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.text-editor =
-    { pkgs, ... }:
-    {
-      home.sessionVariables = {
-        EDITOR = "nvim";
-        VISUAL = "nvim";
-      };
-      home.packages = [ self.packages.${pkgs.stdenv.hostPlatform.system}.nvim ];
-    };
   flake.nixosModules.text-editor =
     { pkgs, ... }:
     {
