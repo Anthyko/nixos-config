@@ -5,8 +5,6 @@
     environment.systemPackages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.zsh
     ];
-    environment.shells = [
-    ];
     environment.localBinInPath = true;
     users.users.${system.users.main}.shell = self.packages.${pkgs.stdenv.hostPlatform.system}.zsh;
   };
