@@ -50,6 +50,9 @@
         fzf
         zoxide
 
+        # For clean alias
+        nh
+
         # Zsh plugins
         zsh-autosuggestions
         zsh-syntax-highlighting
