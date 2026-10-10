@@ -1,8 +1,8 @@
-_: {
-  users.users.anthony = {
+{ system, ... }: {
+  users.users.${system.users.main} = {
     isNormalUser = true;
-    home = "/home/anthony";
-    description = "Anthony";
+    home = "/home/${system.users.main}";
+    description = "${system.users.main}";
     extraGroups = [
       "wheel"
       "networkmanager"

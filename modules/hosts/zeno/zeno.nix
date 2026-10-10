@@ -1,6 +1,7 @@
 {
   self,
   mkNixos,
+  system,
   ...
 }:
 {
@@ -19,6 +20,7 @@
         ./_modules/gaming.nix
         ./_modules/nvidia.nix
         ../../../hardware/zeno/hardware-configuration.nix
+        self.nixosModules.zeno-file-sync
       ];
       # Use the systemd-boot EFI boot loader.
       boot.loader.systemd-boot.enable = true;
@@ -72,7 +74,7 @@
       services.gvfs.enable = true;
       services.udisks2.enable = true;
       # Define a user account. Don't forget to set a password with ‘passwd’.
-      users.users.anthony = {
+      users.users.${system.users.main} = {
         isNormalUser = true;
         extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
         initialPassword = "test";

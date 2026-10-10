@@ -29,6 +29,7 @@
         ./_modules/mail-server.nix
         ./_modules/syncplay.nix
         ./../../../hardware/mark/disk-config.nix
+        self.nixosModules.mark-file-sync
       ];
 
       boot.loader.grub = {

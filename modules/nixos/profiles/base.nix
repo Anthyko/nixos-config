@@ -9,7 +9,6 @@
         dns-server
         ntp
         nix-config
-        file-sync
         tailscale
         secrets
         cli-apps

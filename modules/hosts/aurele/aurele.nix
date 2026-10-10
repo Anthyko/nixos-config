@@ -1,6 +1,7 @@
 {
   self,
   mkNixos,
+  system,
   ...
 }:
 {
@@ -66,7 +67,7 @@
 
       programs.localsend.enable = true;
 
-      users.users.anthony = {
+      users.users.${system.users.main} = {
         isNormalUser = true;
         description = "Anthony";
         extraGroups = [
