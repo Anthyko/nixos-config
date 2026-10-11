@@ -162,6 +162,9 @@
           "pocket" = {
             id = network.syncthing.pocket;
           };
+          "mark" = {
+            id = network.syncthing.mark;
+          };
         };
         folders = {
           "multi" = {
