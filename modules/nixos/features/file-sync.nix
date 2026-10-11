@@ -17,10 +17,6 @@
       dataDir = "/home/${system.users.main}/.syncthing-sync"; # default destination for file sync
       configDir = "/home/${system.users.main}/.config/syncthing-nix";
     };
-    systemd.targets.multi-user.wants = [ "syncthing@${system.users.main}.service" ];
-    # zeno NU24NWV-KGIJWAI-5P7H2LC-XMRYXUN-LSUW3UX-FILZD6P-HQDB4H2-MKSTFQ3
-    # aurele I63UFAH-7VZARBA-7F25VC7-3OXNISH-GYFQ2OD-RWBJP3N-SHVDA4O-M5QFVAY
-    # mark GFHIJIA-USGMC6L-ZI25Z4C-I4SCE6V-WJERPFI-64EHP7L-CUJY6HM-35NMAAJ
   };
   flake.nixosModules.zeno-file-sync = { config, ... }: {
     sops.secrets."syncthing/key" = {
