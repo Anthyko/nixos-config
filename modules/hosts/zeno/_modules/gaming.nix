@@ -15,6 +15,7 @@
     easyeffects # for microphone
   ];
   environment.sessionVariables = {
+    # make steam able to see custom proton version. Eg: PROTON-GE
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
   };
 }
