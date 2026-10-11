@@ -9,7 +9,7 @@ in
 {
 
   sops.secrets."syncplay" = {
-    sopsFile = ../../../../secrets/syncplay.yaml;
+    sopsFile = ../../../../secrets/mark/syncplay.yaml;
     format = "yaml";
     key = "password";
     mode = "0400";

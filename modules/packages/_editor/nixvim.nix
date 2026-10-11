@@ -49,7 +49,9 @@
 
     # Don't show the mode, since it's already in the statusline
     showmode = false;
-
+      foldmethod = "expr";
+      foldexpr = "v:lua.vim.treesitter.foldexpr()";
+      foldlevel = 99;
     #  See `:help 'clipboard'`
     clipboard = {
       providers = {

@@ -8,7 +8,7 @@ let
 in
 {
   sops.secrets."radicale" = {
-    sopsFile = ../../../../secrets/radicale.yaml;
+    sopsFile = ../../../../secrets/mark/radicale.yaml;
     format = "yaml";
     owner = "radicale";
     group = "radicale";

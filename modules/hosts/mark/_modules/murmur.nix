@@ -36,7 +36,7 @@ in
     #};
   };
   sops.secrets."murmur/env" = {
-    sopsFile = ../../../../secrets/murmur.env;
+    sopsFile = ../../../../secrets/mark/murmur.env;
     format = "dotenv";
     owner = "murmur";
     group = "murmur";

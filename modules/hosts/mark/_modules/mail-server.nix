@@ -33,7 +33,7 @@ in
 
   sops = {
     secrets."postfix/virtual-mailboxes" = {
-      sopsFile = ../../../../secrets/secrets.yaml;
+      sopsFile = ../../../../secrets/mark/secrets.yaml;
       owner = "postfix";
       group = "postfix";
       mode = "0440";
@@ -41,7 +41,7 @@ in
     };
 
     secrets."postfix/smtp2go-sasl-passwd" = {
-      sopsFile = ../../../../secrets/secrets.yaml;
+      sopsFile = ../../../../secrets/mark/secrets.yaml;
       owner = "postfix";
       group = "postfix";
       mode = "0440";
@@ -49,14 +49,14 @@ in
     };
 
     secrets."postfix/aliases" = {
-      sopsFile = ../../../../secrets/secrets.yaml;
+      sopsFile = ../../../../secrets/mark/secrets.yaml;
       owner = "postfix";
       group = "postfix";
       mode = "0440";
       restartUnits = [ "postfix.service" ];
     };
     secrets."dovecot/users" = {
-      sopsFile = ../../../../secrets/secrets.yaml;
+      sopsFile = ../../../../secrets/mark/secrets.yaml;
       owner = "dovecot2";
       group = "dovecot2";
       mode = "0400";

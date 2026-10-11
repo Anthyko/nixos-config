@@ -10,7 +10,7 @@
       enable = true;
       options = {
 
-        urAccepted = 0;
+        urAccepted = -1;
       };
       openDefaultPorts = true;
       user = system.users.main;
@@ -20,12 +20,12 @@
   };
   flake.nixosModules.zeno-file-sync = { config, ... }: {
     sops.secrets."syncthing/key" = {
-      sopsFile = ../../../secrets/zeno.yaml;
+      sopsFile = ../../../secrets/zeno/zeno.yaml;
       key = "syncthing-key";
     };
 
     sops.secrets."syncthing/cert" = {
-      sopsFile = ../../../secrets/zeno.yaml;
+      sopsFile = ../../../secrets/zeno/zeno.yaml;
       key = "syncthing-cert";
     };
     imports = [
@@ -43,6 +43,9 @@
           "pocket" = {
             id = network.syncthing.pocket;
           };
+          "aurele" = {
+            id = network.syncthing.aurele;
+          };
         };
         folders = {
           "multi" = {
@@ -58,7 +61,14 @@
           };
           "minimal" = {
             path = "/home/${system.users.main}/sync/minimal";
-            devices = [ "pocket" ];
+            devices = [
+              "pocket"
+              "aurele"
+            ];
+            versioning = {
+              type = "staggered";
+              params.maxAge = "31536000"; # 1y
+            };
           };
         };
       };
@@ -90,11 +100,18 @@
           "pocket" = {
             id = network.syncthing.pocket;
           };
+          "aurele" = {
+            id = network.syncthing.aurele;
+          };
         };
         folders = {
           "multi" = {
             path = "/home/${system.users.main}/sync/multi";
             devices = [ "zeno" ];
+            versioning = {
+              type = "staggered";
+              params.maxAge = "31536000"; # 1y
+            };
           };
           "notes" = {
             path = "/home/${system.users.main}/sync/notes";
@@ -102,6 +119,72 @@
               "zeno"
               "pocket"
             ];
+            versioning = {
+              type = "staggered";
+              params.maxAge = "7776000"; # 90 days
+            };
+          };
+        };
+      };
+    };
+  };
+  flake.nixosModules.aurele-file-sync = { config, ... }: {
+    sops.secrets."syncthing/key" = {
+      sopsFile = ../../../secrets/aurele.yaml;
+      key = "syncthing-key";
+    };
+
+    sops.secrets."syncthing/cert" = {
+      sopsFile = ../../../secrets/mark.yaml;
+      key = "syncthing-cert";
+    };
+    imports = [
+      self.nixosModules.file-sync
+    ];
+
+    services.syncthing = {
+      key = config.sops.secrets."syncthing/key".path;
+      cert = config.sops.secrets."syncthing/cert".path;
+      settings = {
+        devices = {
+          "zeno" = {
+            id = network.syncthing.zeno;
+            autoAcceptFolders = true;
+          };
+          "pocket" = {
+            id = network.syncthing.pocket;
+          };
+        };
+        folders = {
+          "multi" = {
+            path = "/home/${system.users.main}/sync/multi";
+            devices = [ "zeno" ];
+            versioning = {
+              type = "staggered";
+              params.maxAge = "31536000"; # 1y
+            };
+          };
+          "notes" = {
+            path = "/home/${system.users.main}/sync/notes";
+            devices = [
+              "zeno"
+              "pocket"
+            ];
+            versioning = {
+              type = "staggered";
+              params.maxAge = "7776000"; # 90 days
+            };
+          };
+          "minimal" = {
+            path = "/home/${system.users.main}/sync/minimal";
+            devices = [
+              "zeno"
+              "pocket"
+            ];
+            versioning = {
+              type = "staggered";
+              params.maxAge = "31536000"; # 1y
+            };
           };
         };
       };
