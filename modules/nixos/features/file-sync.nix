@@ -80,12 +80,12 @@
   };
   flake.nixosModules.mark-file-sync = { config, ... }: {
     sops.secrets."syncthing/key" = {
-      sopsFile = ../../../secrets/mark.yaml;
+      sopsFile = ../../../secrets/mark/mark.yaml;
       key = "syncthing-key";
     };
 
     sops.secrets."syncthing/cert" = {
-      sopsFile = ../../../secrets/mark.yaml;
+      sopsFile = ../../../secrets/mark/mark.yaml;
       key = "syncthing-cert";
     };
     imports = [
