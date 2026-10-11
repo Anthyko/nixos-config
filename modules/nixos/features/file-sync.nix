@@ -138,12 +138,12 @@
   };
   flake.nixosModules.aurele-file-sync = { config, ... }: {
     sops.secrets."syncthing/key" = {
-      sopsFile = ../../../secrets/aurele.yaml;
+      sopsFile = ../../../secrets/aurele/aurele.yaml;
       key = "syncthing-key";
     };
 
     sops.secrets."syncthing/cert" = {
-      sopsFile = ../../../secrets/mark.yaml;
+      sopsFile = ../../../secrets/aurele/aurele.yaml;
       key = "syncthing-cert";
     };
     imports = [
