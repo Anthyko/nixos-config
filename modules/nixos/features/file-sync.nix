@@ -50,13 +50,17 @@
         folders = {
           "multi" = {
             path = "/home/${system.users.main}/sync/multi";
-            devices = [ "mark" ];
+            devices = [
+              "mark"
+              "aurele"
+            ];
           };
           "notes" = {
             path = "/home/${system.users.main}/sync/notes";
             devices = [
               "mark"
               "pocket"
+              "aurele"
             ];
           };
           "minimal" = {
@@ -107,7 +111,10 @@
         folders = {
           "multi" = {
             path = "/home/${system.users.main}/sync/multi";
-            devices = [ "zeno" ];
+            devices = [
+              "zeno"
+              "aurele"
+            ];
             versioning = {
               type = "staggered";
               params.maxAge = "31536000"; # 1y
@@ -118,6 +125,7 @@
             devices = [
               "zeno"
               "pocket"
+              "aurele"
             ];
             versioning = {
               type = "staggered";
@@ -158,7 +166,10 @@
         folders = {
           "multi" = {
             path = "/home/${system.users.main}/sync/multi";
-            devices = [ "zeno" ];
+            devices = [
+              "zeno"
+              "mark"
+            ];
             versioning = {
               type = "staggered";
               params.maxAge = "31536000"; # 1y
@@ -169,6 +180,7 @@
             devices = [
               "zeno"
               "pocket"
+              "mark"
             ];
             versioning = {
               type = "staggered";
