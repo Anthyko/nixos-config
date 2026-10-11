@@ -17,6 +17,7 @@
       imports = [
         ./_modules/openssh.nix
         ../../../hardware/aurele/hardware-configuration.nix
+        self.nixosModules.aurele-file-sync
       ];
 
       boot.loader.systemd-boot.enable = true;
