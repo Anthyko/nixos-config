@@ -79,7 +79,12 @@
         after = [ "update-nixos-config.service" ];
         wants = [ "update-nixos-config.service" ];
       };
-
+      swapDevices = [
+        {
+          device = "/var/lib/swapfile";
+          size = 4 * 1024; # 4 Gio, en Mio
+        }
+      ];
       system.stateVersion = "24.05";
     };
 }
