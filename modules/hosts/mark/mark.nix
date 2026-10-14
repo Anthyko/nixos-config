@@ -28,6 +28,7 @@
         ./_modules/music-server.nix
         ./_modules/mail-server.nix
         ./_modules/syncplay.nix
+        ./_modules/forgejo.nix
         ./../../../hardware/mark/disk-config.nix
         self.nixosModules.mark-file-sync
       ];
