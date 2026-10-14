@@ -72,6 +72,7 @@ in
         exit 1
       fi
         ${adminCmd} create --admin --email "root@localhost" --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
-        ${adminCmd} change-password --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
+        
+        #${adminCmd} change-password --username ${user} --password "$(tr -d '\n' < ${pwd.path})" || true
     '';
 }
